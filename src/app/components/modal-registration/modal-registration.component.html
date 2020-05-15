@@ -1,0 +1,50 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title>Registration</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissRegistration()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+  <form [formGroup]="formRegistration" (ngSubmit)="submit()">
+    <ion-list>
+      <ion-item>
+        <ion-label color="primary" floating>First name</ion-label>
+        <ion-input formControlName="firstName"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="primary" floating>Second name</ion-label>
+        <ion-input formControlName="secondName"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="primary" floating>City</ion-label>
+        <ion-input formControlName="city"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="primary" stacked>Enter login</ion-label>
+        <ion-input type="email" formControlName="login"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="primary" stacked>Enter password</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="primary" stacked>Repeat password</ion-label>
+        <ion-input type="password" formControlName="repeatPassword"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button
+      expand="full"
+      [disabled]="formRegistration.invalid"
+      (click)="submit()"
+    >
+      Registration
+    </ion-button>
+  </form>
+</ion-content>
