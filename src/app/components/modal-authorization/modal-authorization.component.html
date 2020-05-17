@@ -7,18 +7,24 @@
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen>
-  <form>
+  <form [formGroup]="formAuthorization">
     <ion-list>
       <ion-item>
         <ion-label color="primary" stacked>Enter login</ion-label>
-        <ion-input type="email" placeholder=""></ion-input>
+        <ion-input type="email" formControlName="login"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label color="primary" stacked>Enter password</ion-label>
-        <ion-input type="password" placeholder=""></ion-input>
+        <ion-input type="password" formControlName="password"></ion-input>
       </ion-item>
     </ion-list>
-    <ion-button expand="full">Authorization</ion-button>
+    <ion-button 
+      expand="full" 
+      [disabled]="formAuthorization.invalid"
+      (click)="submit()"
+    >
+      Authorization
+    </ion-button>
   </form>
 </ion-content>
