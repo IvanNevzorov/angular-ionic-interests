@@ -1,16 +1,17 @@
-import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { UserAPI } from '../store/interfaces/user.interface';
+
+import { UserLoginAPI, UserRegisterAPI } from '../store/interfaces/user.interface';
+import { environment } from './../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 
 export class GraphQLService {
     constructor(private http: HttpClient) { }
 
-    public login({ login, password }): Observable<UserAPI> {
+    public login({ login, password }): Observable<UserLoginAPI> {
         const body = JSON.stringify({
             query: `
             {
@@ -23,17 +24,16 @@ export class GraphQLService {
             `
         });
 
-
         return this.http.post(environment.graphql, body, {
             headers: new HttpHeaders()
                 .set('Content-Type', 'application/json')
                 .set('Accept', 'application/json')
         }).pipe(
-            map((data: UserAPI) => data)
+            map((data: UserLoginAPI) => data)
         )
     }
 
-    public register({ firstName, secondName, city, email, password }): Observable<UserAPI> {
+    public register({ firstName, secondName, city, email, password }): Observable<UserRegisterAPI> {
         const body = JSON.stringify({
             query: `
             mutation{
@@ -51,15 +51,13 @@ export class GraphQLService {
               }
             `
         });
-        console.log(JSON.parse(body));
-
 
         return this.http.post(environment.graphql, body, {
             headers: new HttpHeaders()
                 .set('Content-Type', 'application/json')
                 .set('Accept', 'application/json')
         }).pipe(
-            map((data: UserAPI) => data)
+            map((data: UserRegisterAPI) => data)
         )
     }
 }

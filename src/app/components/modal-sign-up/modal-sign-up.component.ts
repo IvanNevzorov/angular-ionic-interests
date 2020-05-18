@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+
 import { Store } from '@ngrx/store';
+import { ModalController } from '@ionic/angular';
 
 import { GraphQLService } from 'src/app/services/graphql.service';
 import { UserSignInAction } from 'src/app/store/actions/user.action';
-import { Router } from '@angular/router';
+
 
 @Component({
-    selector: 'app-modal-registration',
-    templateUrl: './modal-registration.component.html',
-    styleUrls: ['./modal-registration.component.scss']
+    selector: 'app-modal-sign-up',
+    templateUrl: './modal-sign-up.component.html',
+    styleUrls: ['./modal-sign-up.component.scss']
 })
 
-export class ModalRegistrationComponent implements OnInit {
+export class ModalSignUpComponent implements OnInit {
     public formRegistration: FormGroup;
 
     constructor(
@@ -45,7 +47,7 @@ export class ModalRegistrationComponent implements OnInit {
                 if (!response.errors) {
                     this.store.dispatch(new UserSignInAction(response.data.register));
                     this.modalController.dismiss();
-                    this.router.navigate(['/tabs/tab1']);
+                    this.router.navigate(['/tabs/profile']);
                 }
             });
     }

@@ -4,9 +4,18 @@ export interface User {
     city: string;
 }
 
-export interface UserAPI {
+export interface UserRegisterAPI {
     data: {
         register: User;
+    };
+    errors: {
+        message: string;
+    }
+}
+
+export interface UserLoginAPI {
+    data: {
+        login: User;
     };
     errors: {
         message: string;

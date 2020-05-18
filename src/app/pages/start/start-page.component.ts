@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { ModalRegistrationComponent } from 'src/app/components/modal-registration/modal-registration.component';
-import { ModalAuthorizationComponent } from 'src/app/components/modal-authorization/modal-authorization.component';
+import { ModalSignUpComponent } from 'src/app/components/modal-sign-up/modal-sign-up.component';
+import { ModalSingInComponent } from 'src/app/components/modal-sign-in/modal-sign-in.component';
 
 @Component({
     selector: 'app-start-page',
@@ -16,14 +16,14 @@ export class StartPageComponent {
 
     public async presentRegistration(): Promise<void> {
         const modal = await this.modalController.create({
-            component: ModalRegistrationComponent
+            component: ModalSignUpComponent
         });
         return await modal.present();
     }
 
     public async presentAuthorization(): Promise<void> {
         const modal = await this.modalController.create({
-            component: ModalAuthorizationComponent
+            component: ModalSingInComponent
         });
         return await modal.present();
     }
