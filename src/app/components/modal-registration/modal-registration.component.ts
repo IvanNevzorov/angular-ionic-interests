@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Store } from '@ngrx/store';
+
+import { GraphQLService } from 'src/app/services/graphql.service';
+import { UserSignInAction } from 'src/app/store/actions/user.action';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-modal-registration',
@@ -12,8 +17,11 @@ export class ModalRegistrationComponent implements OnInit {
     public formRegistration: FormGroup;
 
     constructor(
+        public modalController: ModalController,
+        private graphqlService: GraphQLService,
         private fb: FormBuilder,
-        public modalController: ModalController
+        private store: Store,
+        private router: Router
     ) { }
 
     ngOnInit() {
@@ -21,7 +29,7 @@ export class ModalRegistrationComponent implements OnInit {
             firstName: '',
             secondName: '',
             city: '',
-            login: '',
+            email: '',
             password: '',
             repeatPassword: ''
         })
@@ -32,7 +40,13 @@ export class ModalRegistrationComponent implements OnInit {
     }
 
     public submit(): void {
-        console.log(this.formRegistration.value);
-
+        this.graphqlService.register(this.formRegistration.value)
+            .subscribe(response => {
+                if (!response.errors) {
+                    this.store.dispatch(new UserSignInAction(response.data.register));
+                    this.modalController.dismiss();
+                    this.router.navigate(['/tabs/tab1']);
+                }
+            });
     }
 }

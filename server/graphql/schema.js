@@ -1,7 +1,6 @@
-const {buildSchema} = require('graphql')
+const { buildSchema } = require("graphql");
 
 module.exports = buildSchema(`
-
   type User {    
     firstName: String!
     secondName: String!
@@ -24,10 +23,10 @@ module.exports = buildSchema(`
   }
 
   type Query {
-    login(login: LoginInput!): User!
+    login(login: LoginInput!): User
   }
 
   type Mutation {
-    register(user: UserInput!): User!
+    register(user: UserInput!): User
   }
-`)
+`);

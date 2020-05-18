@@ -30,7 +30,7 @@ export class ModalAuthorizationComponent implements OnInit {
     }
 
     public submit() {
-        this.graphqlService.login(this.formAuthorization.value).subscribe(data => console.log(data)
-        );
+        this.graphqlService.login(this.formAuthorization.value)
+            .subscribe(response => console.log(response));
     }
 }
