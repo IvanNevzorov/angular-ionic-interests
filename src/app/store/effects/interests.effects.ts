@@ -1,13 +1,21 @@
-
 import { Injectable } from '@angular/core';
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 
-import { InterestsActionTypes, GetNewsAction, NewsLoadSuccessAction, InterestsLoadErrorAction, GetEventsAction, EventsLoadSuccessAction, MealLoadSuccessAction } from '../actions/interests.action';
+import { ToastController } from '@ionic/angular';
+
+import {
+    InterestsActionTypes,
+    GetNewsAction,
+    NewsLoadSuccessAction,
+    InterestsLoadErrorAction,
+    GetEventsAction,
+    EventsLoadSuccessAction,
+    MealLoadSuccessAction
+} from '../actions/interests.action';
 import { APIService } from 'src/app/services/api.service';
 import { NewsAPI, Interest, EventsAPI, MealAPI } from '../interfaces/interests.interface';
-import { ToastController } from '@ionic/angular';
 import { SerializeService } from 'src/app/services/serialize.service';
 
 @Injectable({ providedIn: 'root' })

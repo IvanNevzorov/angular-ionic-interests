@@ -21,12 +21,11 @@ export class AppComponent {
     this.initializeApp();
   }
 
-
   ngOnInit() {
     this.store.dispatch(new CheckLoginAction);
   }
 
-  initializeApp() {
+  public initializeApp(): void {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();

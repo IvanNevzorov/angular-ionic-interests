@@ -19,7 +19,7 @@ export class APIService {
                 .set('size', '10')
         }).pipe(
             map((data: EventsAPI) => data)
-        )
+        );
     }
 
     public news(): Observable<NewsAPI> {
@@ -27,14 +27,12 @@ export class APIService {
             params: new HttpParams().set('apiKey', environment.newsKey)
         }).pipe(
             map((data: NewsAPI) => data)
-        )
+        );
     }
 
     public mealRandom(): Observable<MealAPI> {
         return this.httpClient.get(environment.mealRandomUrl).pipe(
             map((data: MealAPI) => data)
-        )
+        );
     }
-
-
 }

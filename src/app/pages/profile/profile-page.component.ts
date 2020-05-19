@@ -20,10 +20,8 @@ export class ProfilePageComponent implements OnInit {
 
     ngOnInit() {
         this.userState$.subscribe(user => {
-            console.log(user);
             if (user) {
-                console.log(user);
-                this.userInfo = user
+                this.userInfo = user;
             }
         });
     }
