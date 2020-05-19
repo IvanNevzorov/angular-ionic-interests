@@ -9,7 +9,7 @@ import { selectLoginState } from './store'
 @Injectable({ providedIn: 'root' })
 
 export class AuthGuard implements CanActivate {
-    public isLogin: boolean;
+    public isLogin: boolean = false;
     public loginState$: Observable<boolean> = this.store.pipe(select(selectLoginState));
     public subscriber: Subscription;
 

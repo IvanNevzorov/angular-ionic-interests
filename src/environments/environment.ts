@@ -4,7 +4,15 @@
 
 export const environment = {
   production: false,
-  graphql: 'http://localhost:5000/graphql'
+  graphql: 'http://localhost:5000/graphql',
+
+  eventsUrl: 'http://app.ticketmaster.com/discovery/v2/events.json',
+  eventsKey: '0qPTAu6ZOV8ZMnyWLFqROp7WdgGmuQgH',
+
+  newsUrl: 'https://api.currentsapi.services/v1/latest-news',
+  newsKey: 'sowcEeuz3VqwozgUnU9IRn1eSO9tRBlTnHNJfCoBzshx7DFW',
+
+  mealRandomUrl: 'https://www.themealdb.com/api/json/v1/1/random.php'
 };
 
 /*
