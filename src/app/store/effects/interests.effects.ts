@@ -5,35 +5,42 @@ import { of } from 'rxjs';
 
 import { ToastController } from '@ionic/angular';
 
+import { APIService } from 'src/app/services/api.service';
+import { SerializeService } from 'src/app/services/serialize.service';
 import {
     InterestsActionTypes,
-    GetNewsByCategoryAction,
-    NewsByCategoryLoadSuccessAction,
-    InterestsLoadErrorAction,
-    GetEventsByCategoryAction,
-    EventsByCategoryLoadSuccessAction,
-    MealByCategoryLoadSuccessAction,
-    GetMealByCategoryAction,
-    GetMealCategoriesAction,
-    MealCategoriesLoadSuccessAction
-} from '../actions/interests.action';
-import { APIService } from 'src/app/services/api.service';
-import { NewsAPI, Interest, EventsAPI, MealAPI, MealCatigoriesAPI } from '../interfaces/interests.interface';
-import { SerializeService } from 'src/app/services/serialize.service';
+    LoadNewsByCategoryAction,
+    LoadNewsByCategorySuccessAction,
+    LoadNewsByCategoryErrorAction,
+    LoadMealCategoriesAction,
+    LoadMealCategoriesSuccessAction,
+    LoadMealCategoriesErrorAction,
+    LoadMealByCategoryAction,
+    LoadMealByCategorySuccessAction,
+    LoadMealByCategoryErrorAction,
+    LoadEventsByCategoryAction,
+    LoadEventsByCategorySuccessAction,
+    LoadEventsByCategoryErrorAction
+} from './../actions/interests.action';
+import { EventsAPI } from './../interfaces/interests/events-api.interface';
+import { MealCatigoriesAPI } from './../interfaces/interests/meal-catigories-api.interface';
+import { Interest } from './../interfaces/interests/interest.interface';
+import { NewsAPI } from './../interfaces/interests/news-api.interface';
+import { MealAPI } from './../interfaces/interests/meal-api.interface';
 
 @Injectable({ providedIn: 'root' })
 
 export class WeathersEffecrs {
 
     @Effect()
-    public getNewsByCategory$ = this.actions$.pipe(
-        ofType(InterestsActionTypes.GetNewsByCategory),
-        mergeMap((action: GetNewsByCategoryAction) =>
+    public loadNewsByCategory$ = this.actions$.pipe(
+        ofType(InterestsActionTypes.LoadNewsByCategory),
+        mergeMap((action: LoadNewsByCategoryAction) =>
             this.apiService.newsByCategory(action.payload).pipe(
                 map((newsData: NewsAPI) => {
                     const interest: Interest[] =
                         this.serializeService.newsAPI(newsData);
-                    return new NewsByCategoryLoadSuccessAction({ category: action.payload, news: interest });
+                    return new LoadNewsByCategorySuccessAction({ category: action.payload, news: interest });
                 }),
                 catchError((error) => {
                     this.toastController.create({
@@ -41,20 +48,20 @@ export class WeathersEffecrs {
                         position: 'top',
                         duration: 3000
                     });
-                    return of(new InterestsLoadErrorAction());
+                    return of(new LoadNewsByCategoryErrorAction());
                 }))
         )
     );
 
     @Effect()
-    public getMealCategories$ = this.actions$.pipe(
-        ofType(InterestsActionTypes.GetMealCategories),
-        mergeMap((action: GetMealCategoriesAction) =>
+    public loadMealCategories$ = this.actions$.pipe(
+        ofType(InterestsActionTypes.LoadMealCategories),
+        mergeMap((action: LoadMealCategoriesAction) =>
             this.apiService.mealCategories().pipe(
                 map((newsData: MealCatigoriesAPI) => {
                     const categories: string[] =
                         this.serializeService.mealCategoriesAPI(newsData);
-                    return new MealCategoriesLoadSuccessAction(categories);
+                    return new LoadMealCategoriesSuccessAction(categories);
                 }),
                 catchError((error) => {
                     this.toastController.create({
@@ -62,20 +69,20 @@ export class WeathersEffecrs {
                         position: 'top',
                         duration: 3000
                     });
-                    return of(new InterestsLoadErrorAction());
+                    return of(new LoadMealCategoriesErrorAction());
                 }))
         )
     );
 
     @Effect()
-    public getMealByCategory$ = this.actions$.pipe(
-        ofType(InterestsActionTypes.GetMealByCategory),
-        mergeMap((action: GetMealByCategoryAction) =>
+    public loadMealByCategory$ = this.actions$.pipe(
+        ofType(InterestsActionTypes.LoadMealByCategory),
+        mergeMap((action: LoadMealByCategoryAction) =>
             this.apiService.mealByCategory(action.payload).pipe(
                 map((newsData: MealAPI) => {
                     const interest: Interest[] =
                         this.serializeService.mealAPI(newsData, action.payload);
-                    return new MealByCategoryLoadSuccessAction({ category: action.payload, meal: interest });
+                    return new LoadMealByCategorySuccessAction({ category: action.payload, meal: interest });
                 }),
                 catchError((error) => {
                     this.toastController.create({
@@ -83,20 +90,20 @@ export class WeathersEffecrs {
                         position: 'top',
                         duration: 3000
                     });
-                    return of(new InterestsLoadErrorAction());
+                    return of(new LoadMealByCategoryErrorAction());
                 }))
         )
     );
 
     @Effect()
-    public getEventsByCategory$ = this.actions$.pipe(
-        ofType(InterestsActionTypes.GetEventsByCategory),
-        mergeMap((action: GetEventsByCategoryAction) =>
+    public loadEventsByCategory$ = this.actions$.pipe(
+        ofType(InterestsActionTypes.LoadEventsByCategory),
+        mergeMap((action: LoadEventsByCategoryAction) =>
             this.apiService.eventsByCategory(action.payload).pipe(
                 map((newsData: EventsAPI) => {
                     const interest: Interest[] =
                         this.serializeService.eventsAPI(newsData);
-                    return new EventsByCategoryLoadSuccessAction({ category: action.payload, events: interest });
+                    return new LoadEventsByCategorySuccessAction({ category: action.payload, events: interest });
                 }),
                 catchError((error) => {
                     this.toastController.create({
@@ -104,7 +111,7 @@ export class WeathersEffecrs {
                         position: 'top',
                         duration: 3000
                     });
-                    return of(new InterestsLoadErrorAction());
+                    return of(new LoadEventsByCategoryErrorAction());
                 }))
         )
     );

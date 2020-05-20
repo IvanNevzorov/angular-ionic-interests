@@ -9,7 +9,7 @@ export class SerializeService {
     public mealCategoriesAPI(mealCategoriesAPI: MealCatigoriesAPI): string[] {
         const result: string[] = [];
         mealCategoriesAPI.meals.forEach(item => {
-            result.push(item.strCategory)
+            result.push(item.strCategory);
         });
         return result;
     }
@@ -22,8 +22,9 @@ export class SerializeService {
                 description: item.strMealThumb,
                 category,
                 type: 'meal'
-            })
+            });
         });
+        console.log(`meal ${result}`);
         return result;
     }
 
@@ -35,8 +36,9 @@ export class SerializeService {
                 description: item.description,
                 category: item.category[0],
                 type: 'news'
-            })
+            });
         });
+        console.log(`news ${result}`);
         return result;
     }
 
@@ -49,7 +51,8 @@ export class SerializeService {
                 category: item.classifications[0].segment.name,
                 type: 'events'
             });
-        })
+        });
+        console.log(`events ${result}`);
         return result;
     }
 }

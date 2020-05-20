@@ -2,19 +2,25 @@ import * as UserReducer from './reducers/user.reducer';
 import * as InterestsReducer from './reducers/interests.reducer';
 import { ActionReducerMap } from '@ngrx/store';
 import { createSelector } from '@ngrx/store';
+import { InterestsUnionAction } from './actions/interests.action';
+import { UserUnionAction } from './actions/user.action';
 
-export interface State {
+export interface AppState {
     userState: UserReducer.UserState;
-    interestsState: InterestsReducer.InterestsState
+    interestsState: InterestsReducer.InterestsState;
 }
 
-export const reducers: ActionReducerMap<State> = {
+export interface State {
+    data: AppState;
+}
+
+export const reducers: ActionReducerMap<AppState,  UserUnionAction | InterestsUnionAction> = {
     userState: UserReducer.reducer,
     interestsState: InterestsReducer.reducer
 };
 
-export const selectUserStore = (state: State) => state.userState;
-export const selectInterestsStore = (state: State) => state.interestsState;
+export const selectUserStore = (state: AppState) => state.userState;
+export const selectInterestsStore = (state: AppState) => state.interestsState;
 
 export const selectLoginState = createSelector(
     selectUserStore,

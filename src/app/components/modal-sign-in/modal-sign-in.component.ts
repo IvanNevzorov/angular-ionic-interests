@@ -1,3 +1,4 @@
+import { State } from './../../store/index';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -22,7 +23,7 @@ export class ModalSingInComponent implements OnInit {
         public modalController: ModalController,
         private graphqlService: GraphQLService,
         private fb: FormBuilder,
-        private store: Store,
+        private store$: Store<State>,
         private router: Router
     ) { }
 
@@ -34,7 +35,7 @@ export class ModalSingInComponent implements OnInit {
     }
 
     public dismissAuthorization(): void {
-        this.modalController.dismiss()
+        this.modalController.dismiss();
     }
 
     public submit(): void {
@@ -42,7 +43,7 @@ export class ModalSingInComponent implements OnInit {
             .subscribe(response => {
                 if (!response.errors) {
                     console.log(response);
-                    this.store.dispatch(new UserSignInAction(response.data.login));
+                    this.store$.dispatch(new UserSignInAction(response.data.login));
                     this.modalController.dismiss();
                     this.router.navigate(['/tabs/profile']);
                 }

@@ -1,5 +1,5 @@
+import { User } from './../interfaces/user/user.interface';
 import { Action } from '@ngrx/store';
-import { User } from '../interfaces/user.interface';
 
 export enum UserActionTypes {
     CheckLogin = '[User] Check Login',
@@ -28,4 +28,4 @@ export class UserSignOutAction implements Action {
 export type UserUnionAction =
     | CheckLoginAction
     | UserSignInAction
-    | UserSignOutAction
+    | UserSignOutAction;

@@ -1,3 +1,4 @@
+import { State } from './../../store/index';
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -12,10 +13,10 @@ import { User } from 'src/app/store/interfaces/user.interface';
 
 export class ProfilePageComponent implements OnInit {
     public userInfo: User;
-    public userState$: Observable<User> = this.store.pipe(select(selectUserState));
+    public userState$: Observable<User> = this.store$.pipe(select(selectUserState));
 
     constructor(
-        private store: Store
+        private store$: Store<State>
     ) { }
 
     ngOnInit() {

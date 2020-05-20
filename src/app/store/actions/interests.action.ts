@@ -1,19 +1,23 @@
+import { Interest } from './../interfaces/interests/interest.interface';
 import { Action } from '@ngrx/store';
-import { Interest } from '../interfaces/interests.interface';
 
 export enum InterestsActionTypes {
     AddNewsCategoriesAction = '[News] Add News Categories Action',
-    GetNewsByCategory = '[News] Get News By Categoty',
-    NewsByCategoryLoadSuccess = '[News] News By Categoty LoadSuccess',
+    LoadNewsByCategory = '[News] Load News By Category',
+    LoadNewsByCategorySuccess = '[News] Load News By Category Success',
+    LoadNewsByCategoryError = '[News] Load News By Category Error',
 
-    GetMealCategories = '[Meal] Get Meal Categories',
-    MealCategoriesLoadSuccess = '[Meal] Meal Categories Load Success',
-    GetMealByCategory = '[Meal] Get Meal By Category',
-    MealByCategoryLoadSuccess = '[Meal] Meal By Category Load Success',
+    LoadMealCategories = '[Meal] Load Meal Categories',
+    LoadMealCategoriesSuccess = '[Meal] Load Meal Categories Success',
+    LoadMealCategoriesError = '[Meal] Load Meal Categories Error',
+    LoadMealByCategory = '[Meal] Load Meal By Category',
+    LoadMealByCategorySuccess = '[Meal] Load Meal By Category Success',
+    LoadMealByCategoryError = '[Meal] Load Meal By Category Error',
 
     AddEventsCategoriesAction = '[Events] Add Events Categories',
-    GetEventsByCategory = '[Events] Get Events By Category',
-    EventsByCategoryLoadSuccess = '[Events] Events By Category Load Success',
+    LoadEventsByCategory = '[Events] Load Events By Category',
+    LoadEventsByCategorySuccess = '[Events] Load Events By Category Success',
+    LoadEventsByCategoryError = '[Events] Load Events By Category Error',
 
     InterestsLoadError = '[Interests] Interests Load Error'
 }
@@ -24,41 +28,61 @@ export class AddNewsCategoriesAction implements Action {
     constructor(public payload: string[]) { }
 }
 
-export class GetNewsByCategoryAction implements Action {
-    readonly type = InterestsActionTypes.GetNewsByCategory;
+export class LoadNewsByCategoryAction implements Action {
+    readonly type = InterestsActionTypes.LoadNewsByCategory;
 
     constructor(public payload: string) { }
 }
 
-export class NewsByCategoryLoadSuccessAction implements Action {
-    readonly type = InterestsActionTypes.NewsByCategoryLoadSuccess;
+export class LoadNewsByCategorySuccessAction implements Action {
+    readonly type = InterestsActionTypes.LoadNewsByCategorySuccess;
 
     constructor(public payload: { category: string, news: Interest[] }) { }
 }
 
-export class GetMealCategoriesAction implements Action {
-    readonly type = InterestsActionTypes.GetMealCategories;
+export class LoadNewsByCategoryErrorAction implements Action {
+    readonly type = InterestsActionTypes.LoadNewsByCategoryError;
 
     constructor() { }
 }
 
-export class MealCategoriesLoadSuccessAction implements Action {
-    readonly type = InterestsActionTypes.MealCategoriesLoadSuccess;
+
+export class LoadMealCategoriesAction implements Action {
+    readonly type = InterestsActionTypes.LoadMealCategories;
+
+    constructor() { }
+}
+
+export class LoadMealCategoriesSuccessAction implements Action {
+    readonly type = InterestsActionTypes.LoadMealCategoriesSuccess;
 
     constructor(public payload: string[]) { }
 }
 
-export class GetMealByCategoryAction implements Action {
-    readonly type = InterestsActionTypes.GetMealByCategory;
+export class LoadMealCategoriesErrorAction implements Action {
+    readonly type = InterestsActionTypes.LoadMealCategoriesError;
+
+    constructor() { }
+}
+
+export class LoadMealByCategoryAction implements Action {
+    readonly type = InterestsActionTypes.LoadMealByCategory;
 
     constructor(public payload: string) { }
 }
 
-export class MealByCategoryLoadSuccessAction implements Action {
-    readonly type = InterestsActionTypes.MealByCategoryLoadSuccess;
+export class LoadMealByCategorySuccessAction implements Action {
+    readonly type = InterestsActionTypes.LoadMealByCategorySuccess;
 
     constructor(public payload: { category: string, meal: Interest[] }) { }
 }
+
+export class LoadMealByCategoryErrorAction implements Action {
+    readonly type = InterestsActionTypes.LoadMealByCategoryError;
+
+    constructor() { }
+}
+
 
 export class AddEventsCategoriesAction implements Action {
     readonly type = InterestsActionTypes.AddEventsCategoriesAction;
@@ -66,17 +90,24 @@ export class AddEventsCategoriesAction implements Action {
     constructor(public payload: string[]) { }
 }
 
-export class GetEventsByCategoryAction implements Action {
-    readonly type = InterestsActionTypes.GetEventsByCategory;
+export class LoadEventsByCategoryAction implements Action {
+    readonly type = InterestsActionTypes.LoadEventsByCategory;
 
     constructor(public payload: string) { }
 }
 
-export class EventsByCategoryLoadSuccessAction implements Action {
-    readonly type = InterestsActionTypes.EventsByCategoryLoadSuccess;
+export class LoadEventsByCategorySuccessAction implements Action {
+    readonly type = InterestsActionTypes.LoadEventsByCategorySuccess;
 
     constructor(public payload: { category: string, events: Interest[] }) { }
 }
+
+export class LoadEventsByCategoryErrorAction implements Action {
+    readonly type = InterestsActionTypes.LoadEventsByCategoryError;
+
+    constructor() { }
+}
+
 
 export class InterestsLoadErrorAction implements Action {
     readonly type = InterestsActionTypes.InterestsLoadError;
@@ -88,13 +119,17 @@ export class InterestsLoadErrorAction implements Action {
 
 export type InterestsUnionAction =
     | AddNewsCategoriesAction
-    | GetNewsByCategoryAction
-    | NewsByCategoryLoadSuccessAction
-    | GetMealCategoriesAction
-    | MealCategoriesLoadSuccessAction
-    | GetMealByCategoryAction
-    | MealByCategoryLoadSuccessAction
+    | LoadNewsByCategoryAction
+    | LoadNewsByCategorySuccessAction
+    | LoadNewsByCategoryErrorAction
+    | LoadMealCategoriesAction
+    | LoadMealCategoriesSuccessAction
+    | LoadMealCategoriesErrorAction
+    | LoadMealByCategoryAction
+    | LoadMealByCategorySuccessAction
+    | LoadMealByCategoryErrorAction
     | AddEventsCategoriesAction
-    | GetEventsByCategoryAction
-    | EventsByCategoryLoadSuccessAction
-    | InterestsLoadErrorAction
+    | LoadEventsByCategoryAction
+    | LoadEventsByCategorySuccessAction
+    | LoadEventsByCategoryErrorAction
+    | InterestsLoadErrorAction;

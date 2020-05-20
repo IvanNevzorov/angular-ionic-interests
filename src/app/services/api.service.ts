@@ -13,6 +13,8 @@ export class APIService {
     constructor(private httpClient: HttpClient) { }
 
     public eventsByCategory(category: string): Observable<EventsAPI> {
+        console.log('events');
+        
         return this.httpClient.get(environment.eventsByCategoryUrl, {
             params: new HttpParams()
                 .set('segmentName', `${category}`)
@@ -24,6 +26,7 @@ export class APIService {
     }
 
     public newsByCategory(category: string): Observable<NewsAPI> {
+        console.log('news');
         return this.httpClient.get(environment.newsByCategoryUrl, {
             params: new HttpParams()
                 .set('category', category)
@@ -40,6 +43,7 @@ export class APIService {
     }
 
     public mealByCategory(category: string): Observable<MealAPI> {
+        console.log('meal');
         return this.httpClient.get(environment.mealByCategoryUrl, {
             params: new HttpParams()
                 .set('c', category)

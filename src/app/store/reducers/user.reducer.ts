@@ -1,5 +1,5 @@
-import { User } from '../interfaces/user.interface';
-import { UserUnionAction, UserActionTypes } from '../actions/user.action'
+import { User } from './../interfaces/user/user.interface';
+import { UserUnionAction, UserActionTypes } from '../actions/user.action';
 
 export interface UserState {
     user: User;
