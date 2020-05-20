@@ -5,34 +5,50 @@ export interface InterestsState {
     news: Interests;
     meal: Interests;
     events: Interests;
+    catigories: string[];
+    type: string;
 }
 
 const initialState: InterestsState = {
     news: {},
     meal: {},
-    events: {}
+    events: {},
+    catigories: [],
+    type: ''
 };
 
 export const reducer = (state: InterestsState = initialState, action: InterestsUnionAction) => {
 
     switch (action.type) {
-        case InterestsActionTypes.GetNews:
+        case InterestsActionTypes.AddNewsCategoriesAction:
+            return { ...state, catigories: action.payload };
+
+        case InterestsActionTypes.GetNewsByCategory:
             return { ...state };
 
-        case InterestsActionTypes.NewsLoadSuccess:
-            return { ...state, news: { ...state.news, [action.payload.title]: action.payload } };
+        case InterestsActionTypes.NewsByCategoryLoadSuccess:
+            return { ...state, news: { ...state.news, [action.payload.category]: action.payload.news } };
 
-        case InterestsActionTypes.GetEvents:
+        case InterestsActionTypes.AddEventsCategoriesAction:
+            return { ...state, catigories: action.payload };
+
+        case InterestsActionTypes.GetEventsByCategory:
             return { ...state };
 
-        case InterestsActionTypes.EventsLoadSuccess:
-            return { ...state, events: { ...state.events, [action.payload.title]: action.payload } };
+        case InterestsActionTypes.EventsByCategoryLoadSuccess:
+            return { ...state, events: { ...state.events, [action.payload.category]: action.payload.events } };
 
-        case InterestsActionTypes.GetMeal:
+        case InterestsActionTypes.GetMealCategories:
             return { ...state };
 
-        case InterestsActionTypes.MealLoadSuccess:
-            return { ...state, meal: { ...state.meal, [action.payload.title]: action.payload } };
+        case InterestsActionTypes.MealCategoriesLoadSuccess:
+            return { ...state, catigories: action.payload };
+
+        case InterestsActionTypes.GetMealByCategory:
+            return { ...state };
+
+        case InterestsActionTypes.MealByCategoryLoadSuccess:
+            return { ...state, meal: { ...state.meal, [action.payload.category]: action.payload.meal } };
 
         case InterestsActionTypes.InterestsLoadError:
             return { ...state };

@@ -6,14 +6,19 @@ export interface Interest {
 }
 
 export interface Interests {
-    [title: string]: Interest
+    [category: string]: Interest[]
+}
+
+export interface MealCatigoriesAPI {
+    meals: [{
+        strCategory: string;
+    }];
 }
 
 export interface MealAPI {
     meals: [{
         strMeal: string;
-        strCategory: string;
-        strInstructions: string;
+        strMealThumb: string;
     }];
 }
 
@@ -29,14 +34,15 @@ export interface EventsAPI {
     _embedded: {
         events: [{
             name: string;
-            accessibility: {
-                info: string;
-            };
+            classifications: [{
+                segment: {
+                    name: string;
+                };
+            }];
+            images: [{
+                url: string;
+            }];
         }];
-        classifications: [{
-            genre: {
-                name: string;
-            };
-        }];
+
     };
 }

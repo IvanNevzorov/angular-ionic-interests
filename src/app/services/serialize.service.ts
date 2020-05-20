@@ -1,47 +1,55 @@
-import { Interests } from './../store/interfaces/interests.interface';
 import { Injectable } from '@angular/core';
-import { MealAPI, Interest, NewsAPI, EventsAPI } from '../store/interfaces/interests.interface';
+import { MealAPI, Interest, NewsAPI, EventsAPI, MealCatigoriesAPI } from '../store/interfaces/interests.interface';
 
 @Injectable({ providedIn: 'root' })
 
 export class SerializeService {
     constructor() { }
 
-    public mealAPI(mealAPI: MealAPI): Interest {
-        const { strMeal, strInstructions, strCategory } = mealAPI.meals[0];
-        return {
-            title: strMeal,
-            description: strInstructions,
-            category: strCategory,
-            type: 'meal'
-        };
+    public mealCategoriesAPI(mealCategoriesAPI: MealCatigoriesAPI): string[] {
+        const result: string[] = [];
+        mealCategoriesAPI.meals.forEach(item => {
+            result.push(item.strCategory)
+        });
+        return result;
     }
 
-    public newsAPI(newsAPI: NewsAPI): Interest {
-        const { title, description, category } = newsAPI.news[0];
-        return {
-            title,
-            description,
-            category: category[0],
-            type: 'news'
-        };
-    }
-
-    public eventsAPI(eventsAPI: EventsAPI): Interest {
-        const { events, classifications } = eventsAPI._embedded;
-        return {
-            title: events[0].name,
-            description: events[0].accessibility.info,
-            category: classifications[0].genre.name,
-            type: 'events'
-        };
-    }
-
-    public interests(interests: Interests): Interest[] {
+    public mealAPI(mealAPI: MealAPI, category: string): Interest[] {
         const result: Interest[] = [];
-        for (const interest in interests) {
-            result.push(interests[interest]);
-        }
+        mealAPI.meals.forEach(item => {
+            result.push({
+                title: item.strMeal,
+                description: item.strMealThumb,
+                category,
+                type: 'meal'
+            })
+        });
+        return result;
+    }
+
+    public newsAPI(newsAPI: NewsAPI): Interest[] {
+        const result: Interest[] = [];
+        newsAPI.news.forEach(item => {
+            result.push({
+                title: item.title,
+                description: item.description,
+                category: item.category[0],
+                type: 'news'
+            })
+        });
+        return result;
+    }
+
+    public eventsAPI(eventsAPI: EventsAPI): Interest[] {
+        const result: Interest[] = [];
+        eventsAPI._embedded.events.forEach(item => {
+            result.push({
+                title: item.name,
+                description: item.images[0].url,
+                category: item.classifications[0].segment.name,
+                type: 'events'
+            });
+        })
         return result;
     }
 }

@@ -6,13 +6,39 @@ export const environment = {
   production: false,
   graphql: 'http://localhost:5000/graphql',
 
-  eventsUrl: 'http://app.ticketmaster.com/discovery/v2/events.json',
+  eventsByCategoryUrl: 'http://app.ticketmaster.com/discovery/v2/events.json',
   eventsKey: '0qPTAu6ZOV8ZMnyWLFqROp7WdgGmuQgH',
+  eventsCategories: [
+    "Sports",
+    "Music",
+    "Film",
+    "Miscellaneous"
+  ],
 
-  newsUrl: 'https://api.currentsapi.services/v1/latest-news',
+  newsByCategoryUrl: 'https://api.currentsapi.services/v1/search',
   newsKey: 'sowcEeuz3VqwozgUnU9IRn1eSO9tRBlTnHNJfCoBzshx7DFW',
+  newsCategories: [
+    "regional",
+    "technology",
+    "lifestyle",
+    "business",
+    "general",
+    "programming",
+    "science",
+    "entertainment",
+    "world",
+    "sports",
+    "finance",
+    "academia",
+    "politics",
+    "health",
+    "food",
+    "game"
+  ],
 
-  mealRandomUrl: 'https://www.themealdb.com/api/json/v1/1/random.php'
+  mealByCategoryUrl: 'https://www.themealdb.com/api/json/v1/1/filter.php',
+  mealCategoriesUrl: 'https://www.themealdb.com/api/json/v1/1/list.php?c=list',
+
 };
 
 /*

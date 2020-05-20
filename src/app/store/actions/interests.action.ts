@@ -1,54 +1,81 @@
 import { Action } from '@ngrx/store';
-import { User } from '../interfaces/user.interface';
 import { Interest } from '../interfaces/interests.interface';
 
 export enum InterestsActionTypes {
-    GetNews = '[News] Get News',
-    NewsLoadSuccess = '[News] News Load Success',
+    AddNewsCategoriesAction = '[News] Add News Categories Action',
+    GetNewsByCategory = '[News] Get News By Categoty',
+    NewsByCategoryLoadSuccess = '[News] News By Categoty LoadSuccess',
 
-    GetMeal = '[Meal] Get Meal',
-    MealLoadSuccess = '[Meal] Meal Load Success',
+    GetMealCategories = '[Meal] Get Meal Categories',
+    MealCategoriesLoadSuccess = '[Meal] Meal Categories Load Success',
+    GetMealByCategory = '[Meal] Get Meal By Category',
+    MealByCategoryLoadSuccess = '[Meal] Meal By Category Load Success',
 
-    GetEvents = '[Events] Get Events',
-    EventsLoadSuccess = '[Events] Events Load Success',
+    AddEventsCategoriesAction = '[Events] Add Events Categories',
+    GetEventsByCategory = '[Events] Get Events By Category',
+    EventsByCategoryLoadSuccess = '[Events] Events By Category Load Success',
 
     InterestsLoadError = '[Interests] Interests Load Error'
 }
 
-export class GetNewsAction implements Action {
-    readonly type = InterestsActionTypes.GetNews;
+export class AddNewsCategoriesAction implements Action {
+    readonly type = InterestsActionTypes.AddNewsCategoriesAction;
+
+    constructor(public payload: string[]) { }
+}
+
+export class GetNewsByCategoryAction implements Action {
+    readonly type = InterestsActionTypes.GetNewsByCategory;
+
+    constructor(public payload: string) { }
+}
+
+export class NewsByCategoryLoadSuccessAction implements Action {
+    readonly type = InterestsActionTypes.NewsByCategoryLoadSuccess;
+
+    constructor(public payload: { category: string, news: Interest[] }) { }
+}
+
+export class GetMealCategoriesAction implements Action {
+    readonly type = InterestsActionTypes.GetMealCategories;
 
     constructor() { }
 }
 
-export class NewsLoadSuccessAction implements Action {
-    readonly type = InterestsActionTypes.NewsLoadSuccess;
+export class MealCategoriesLoadSuccessAction implements Action {
+    readonly type = InterestsActionTypes.MealCategoriesLoadSuccess;
 
-    constructor(public payload: Interest) { }
+    constructor(public payload: string[]) { }
 }
 
-export class GetMealAction implements Action {
-    readonly type = InterestsActionTypes.GetMeal;
+export class GetMealByCategoryAction implements Action {
+    readonly type = InterestsActionTypes.GetMealByCategory;
 
-    constructor() { }
+    constructor(public payload: string) { }
 }
 
-export class MealLoadSuccessAction implements Action {
-    readonly type = InterestsActionTypes.MealLoadSuccess;
+export class MealByCategoryLoadSuccessAction implements Action {
+    readonly type = InterestsActionTypes.MealByCategoryLoadSuccess;
 
-    constructor(public payload: Interest) { }
+    constructor(public payload: { category: string, meal: Interest[] }) { }
 }
 
-export class GetEventsAction implements Action {
-    readonly type = InterestsActionTypes.GetEvents;
+export class AddEventsCategoriesAction implements Action {
+    readonly type = InterestsActionTypes.AddEventsCategoriesAction;
 
-    constructor() { }
+    constructor(public payload: string[]) { }
 }
 
-export class EventsLoadSuccessAction implements Action {
-    readonly type = InterestsActionTypes.EventsLoadSuccess;
+export class GetEventsByCategoryAction implements Action {
+    readonly type = InterestsActionTypes.GetEventsByCategory;
 
-    constructor(public payload: Interest) { }
+    constructor(public payload: string) { }
+}
+
+export class EventsByCategoryLoadSuccessAction implements Action {
+    readonly type = InterestsActionTypes.EventsByCategoryLoadSuccess;
+
+    constructor(public payload: { category: string, events: Interest[] }) { }
 }
 
 export class InterestsLoadErrorAction implements Action {
@@ -60,10 +87,14 @@ export class InterestsLoadErrorAction implements Action {
 
 
 export type InterestsUnionAction =
-    | GetNewsAction
-    | NewsLoadSuccessAction
-    | GetMealAction
-    | MealLoadSuccessAction
-    | GetEventsAction
-    | EventsLoadSuccessAction
+    | AddNewsCategoriesAction
+    | GetNewsByCategoryAction
+    | NewsByCategoryLoadSuccessAction
+    | GetMealCategoriesAction
+    | MealCategoriesLoadSuccessAction
+    | GetMealByCategoryAction
+    | MealByCategoryLoadSuccessAction
+    | AddEventsCategoriesAction
+    | GetEventsByCategoryAction
+    | EventsByCategoryLoadSuccessAction
     | InterestsLoadErrorAction

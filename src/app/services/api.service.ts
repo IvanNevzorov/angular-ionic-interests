@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
-import { EventsAPI, NewsAPI, MealAPI } from '../store/interfaces/interests.interface';
+import { EventsAPI, NewsAPI, MealAPI, MealCatigoriesAPI } from '../store/interfaces/interests.interface';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
@@ -12,26 +12,38 @@ export class APIService {
 
     constructor(private httpClient: HttpClient) { }
 
-    public events(): Observable<EventsAPI> {
-        return this.httpClient.get(environment.eventsUrl, {
+    public eventsByCategory(category: string): Observable<EventsAPI> {
+        return this.httpClient.get(environment.eventsByCategoryUrl, {
             params: new HttpParams()
+                .set('segmentName', `${category}`)
                 .set('apikey', environment.eventsKey)
-                .set('size', '10')
+                .set('size', '15')
         }).pipe(
             map((data: EventsAPI) => data)
         );
     }
 
-    public news(): Observable<NewsAPI> {
-        return this.httpClient.get(environment.newsUrl, {
-            params: new HttpParams().set('apiKey', environment.newsKey)
+    public newsByCategory(category: string): Observable<NewsAPI> {
+        return this.httpClient.get(environment.newsByCategoryUrl, {
+            params: new HttpParams()
+                .set('category', category)
+                .set('apiKey', environment.newsKey)
         }).pipe(
             map((data: NewsAPI) => data)
         );
     }
 
-    public mealRandom(): Observable<MealAPI> {
-        return this.httpClient.get(environment.mealRandomUrl).pipe(
+    public mealCategories(): Observable<MealCatigoriesAPI> {
+        return this.httpClient.get(environment.mealCategoriesUrl).pipe(
+            map((data: MealCatigoriesAPI) => data)
+        );
+    }
+
+    public mealByCategory(category: string): Observable<MealAPI> {
+        return this.httpClient.get(environment.mealByCategoryUrl, {
+            params: new HttpParams()
+                .set('c', category)
+        }).pipe(
             map((data: MealAPI) => data)
         );
     }
