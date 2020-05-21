@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { MealAPI, Interest, NewsAPI, EventsAPI, MealCatigoriesAPI } from '../store/interfaces/interests.interface';
+import { MealCatigoriesAPI } from '../store/interfaces/interests/meal-catigories-api.interface';
+import { Interest } from '../store/interfaces/interests/interest.interface';
+import { MealAPI } from '../store/interfaces/interests/meal-api.interface';
+import { NewsAPI } from '../store/interfaces/interests/news-api.interface';
+import { EventsAPI } from '../store/interfaces/interests/events-api.interface';
 
 @Injectable({ providedIn: 'root' })
 
@@ -24,7 +28,6 @@ export class SerializeService {
                 type: 'meal'
             });
         });
-        console.log(`meal ${result}`);
         return result;
     }
 
@@ -38,7 +41,6 @@ export class SerializeService {
                 type: 'news'
             });
         });
-        console.log(`news ${result}`);
         return result;
     }
 
@@ -52,7 +54,6 @@ export class SerializeService {
                 type: 'events'
             });
         });
-        console.log(`events ${result}`);
         return result;
     }
 }

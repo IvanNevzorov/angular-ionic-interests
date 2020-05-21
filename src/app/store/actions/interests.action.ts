@@ -108,7 +108,6 @@ export class LoadEventsByCategoryErrorAction implements Action {
     constructor() { }
 }
 
-
 export class InterestsLoadErrorAction implements Action {
     readonly type = InterestsActionTypes.InterestsLoadError;
 

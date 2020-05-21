@@ -1,10 +1,10 @@
-import { State } from './../../store/index';
+import { getUserState, AppState } from './../../store/index';
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { User } from 'src/app/store/interfaces/user/user.interface';
 
-import { selectUserState } from 'src/app/store';
-import { User } from 'src/app/store/interfaces/user.interface';
+
 
 @Component({
     selector: 'app-profile-page',
@@ -13,10 +13,11 @@ import { User } from 'src/app/store/interfaces/user.interface';
 
 export class ProfilePageComponent implements OnInit {
     public userInfo: User;
-    public userState$: Observable<User> = this.store$.pipe(select(selectUserState));
+    public userState$: Observable<User> = this.store$.pipe(select(getUserState));
+
 
     constructor(
-        private store$: Store<State>
+        private store$: Store<AppState>
     ) { }
 
     ngOnInit() {

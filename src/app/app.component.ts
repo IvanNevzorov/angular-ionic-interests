@@ -1,4 +1,4 @@
-import { State } from './store/index';
+import { AppState } from './store/index';
 import { Component } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
@@ -17,13 +17,13 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private store$: Store<State>
+    private store$: Store<AppState>
   ) {
     this.initializeApp();
   }
 
   ngOnInit() {
-    this.store$.dispatch(new CheckLoginAction);
+    this.store$.dispatch(new CheckLoginAction());
   }
 
   public initializeApp(): void {

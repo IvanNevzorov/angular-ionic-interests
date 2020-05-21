@@ -3,8 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { UserLoginAPI, UserRegisterAPI } from '../store/interfaces/user.interface';
 import { environment } from './../../environments/environment';
+import { UserLoginAPI } from '../store/interfaces/user/user-login-api.interface';
+import { UserRegisterAPI } from '../store/interfaces/user/user-register-api.interface';
 
 @Injectable({ providedIn: 'root' })
 

@@ -1,6 +1,6 @@
 import * as UserReducer from './reducers/user.reducer';
 import * as InterestsReducer from './reducers/interests.reducer';
-import { ActionReducerMap } from '@ngrx/store';
+import { ActionReducerMap, createFeatureSelector } from '@ngrx/store';
 import { createSelector } from '@ngrx/store';
 import { InterestsUnionAction } from './actions/interests.action';
 import { UserUnionAction } from './actions/user.action';
@@ -10,40 +10,36 @@ export interface AppState {
     interestsState: InterestsReducer.InterestsState;
 }
 
-export interface State {
-    data: AppState;
-}
-
-export const reducers: ActionReducerMap<AppState,  UserUnionAction | InterestsUnionAction> = {
+export const reducers: ActionReducerMap<AppState, UserUnionAction | InterestsUnionAction> = {
     userState: UserReducer.reducer,
     interestsState: InterestsReducer.reducer
 };
 
-export const selectUserStore = (state: AppState) => state.userState;
-export const selectInterestsStore = (state: AppState) => state.interestsState;
+export const getInterestsEntitiesStore = (state: AppState) => state.interestsState;
+export const getUserEntitiesStore = (state: AppState) => state.userState;
 
-export const selectLoginState = createSelector(
-    selectUserStore,
+export const getUserLoginState = createSelector(
+    getUserEntitiesStore,
     (userState: UserReducer.UserState) => userState.isLogin
 );
 
-export const selectUserState = createSelector(
-    selectUserStore,
+export const getUserState = createSelector(
+    getUserEntitiesStore,
     (userState: UserReducer.UserState) => userState.user
 );
 
-export const selectNewsState = createSelector(
-    selectInterestsStore,
+export const getNewsState = createSelector(
+    getInterestsEntitiesStore,
     (interestsState: InterestsReducer.InterestsState) => interestsState.news
 );
 
-export const selectMealState = createSelector(
-    selectInterestsStore,
+export const getMealState = createSelector(
+    getInterestsEntitiesStore,
     (interestsState: InterestsReducer.InterestsState) => interestsState.meal
 );
 
-export const selectEventsState = createSelector(
-    selectInterestsStore,
+export const getEventsState = createSelector(
+    getInterestsEntitiesStore,
     (interestsState: InterestsReducer.InterestsState) => interestsState.events
 );
 

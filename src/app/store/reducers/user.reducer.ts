@@ -6,7 +6,7 @@ export interface UserState {
     isLogin: boolean;
 }
 
-const initialState: UserState = {
+const initialUserState: UserState = {
     user: {
         firstName: '',
         secondName: '',
@@ -15,20 +15,20 @@ const initialState: UserState = {
     isLogin: false
 };
 
-export const reducer = (state: UserState = initialState, action: UserUnionAction) => {
+export const reducer = (userState: UserState = initialUserState, action: UserUnionAction) => {
 
     switch (action.type) {
         case UserActionTypes.CheckLogin:
-            return { ...state };
+            return userState;
 
         case UserActionTypes.SignIn:
-            return { ...state, user: action.payload, isLogin: true };
+            return { ...userState, user: action.payload, isLogin: true };
 
         case UserActionTypes.SignOut:
-            return { ...state, isLogin: false };
+            return { ...userState, isLogin: false };
 
         default:
-            break;
+            return userState;
     }
 };
 

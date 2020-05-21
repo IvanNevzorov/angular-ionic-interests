@@ -30,7 +30,7 @@ import { MealAPI } from './../interfaces/interests/meal-api.interface';
 
 @Injectable({ providedIn: 'root' })
 
-export class WeathersEffecrs {
+export class InterestsEffecrs {
 
     @Effect()
     public loadNewsByCategory$ = this.actions$.pipe(
@@ -79,9 +79,9 @@ export class WeathersEffecrs {
         ofType(InterestsActionTypes.LoadMealByCategory),
         mergeMap((action: LoadMealByCategoryAction) =>
             this.apiService.mealByCategory(action.payload).pipe(
-                map((newsData: MealAPI) => {
+                map((mealData: MealAPI) => {
                     const interest: Interest[] =
-                        this.serializeService.mealAPI(newsData, action.payload);
+                        this.serializeService.mealAPI(mealData, action.payload);
                     return new LoadMealByCategorySuccessAction({ category: action.payload, meal: interest });
                 }),
                 catchError((error) => {

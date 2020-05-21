@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { EventsAPI, NewsAPI, MealAPI, MealCatigoriesAPI } from '../store/interfaces/interests.interface';
-import { Observable } from 'rxjs';
+import { EventsAPI } from '../store/interfaces/interests/events-api.interface';
+import { NewsAPI } from '../store/interfaces/interests/news-api.interface';
+import { MealCatigoriesAPI } from '../store/interfaces/interests/meal-catigories-api.interface';
+import { MealAPI } from '../store/interfaces/interests/meal-api.interface';
+
 
 @Injectable({ providedIn: 'root' })
 
@@ -13,8 +17,6 @@ export class APIService {
     constructor(private httpClient: HttpClient) { }
 
     public eventsByCategory(category: string): Observable<EventsAPI> {
-        console.log('events');
-        
         return this.httpClient.get(environment.eventsByCategoryUrl, {
             params: new HttpParams()
                 .set('segmentName', `${category}`)
@@ -26,7 +28,6 @@ export class APIService {
     }
 
     public newsByCategory(category: string): Observable<NewsAPI> {
-        console.log('news');
         return this.httpClient.get(environment.newsByCategoryUrl, {
             params: new HttpParams()
                 .set('category', category)
@@ -43,7 +44,6 @@ export class APIService {
     }
 
     public mealByCategory(category: string): Observable<MealAPI> {
-        console.log('meal');
         return this.httpClient.get(environment.mealByCategoryUrl, {
             params: new HttpParams()
                 .set('c', category)

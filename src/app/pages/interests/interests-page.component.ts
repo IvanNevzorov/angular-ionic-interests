@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-
-import { Store, select } from '@ngrx/store';
-
-import { SerializeService } from 'src/app/services/serialize.service';
-import { selectNewsState, selectMealState, selectEventsState } from './../../store/index';
-import { Interests, Interest } from './../../store/interfaces/interests.interface';
-import { APIService } from 'src/app/services/api.service';
-import { State } from './../../store/index';
-import { LoadNewsByCategoryAction, LoadEventsByCategoryAction, LoadMealByCategoryAction } from 'src/app/store/actions/interests.action';
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store';
+import {
+    AddNewsCategoriesAction,
+    AddEventsCategoriesAction,
+    LoadMealCategoriesAction
+} from 'src/app/store/actions/interests.action';
+import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-interests-page',
@@ -16,32 +15,32 @@ import { LoadNewsByCategoryAction, LoadEventsByCategoryAction, LoadMealByCategor
     styleUrls: ['./interests-page.component.scss']
 })
 
-export class InterestsPageComponent implements OnInit {
-    public newsState$: Observable<Interests> = this.store$.pipe(select(selectNewsState));
-    public mealState$: Observable<Interests> = this.store$.pipe(select(selectMealState));
-    public eventsState$: Observable<Interests> = this.store$.pipe(select(selectEventsState));
-    public newsInfo: Interest[] = [];
-    public mealInfo: Interest[] = [];
-    public eventsInfo: Interest[] = [];
-    public startInfo: Interest[] = [];
+export class InterestsPageComponent {
 
     constructor(
-        private store$: Store<State>,
-        private serializeService: SerializeService,
-        private apiService: APIService
+        private store$: Store<AppState>,
+        private router: Router
     ) { }
 
-    ngOnInit() {
-        this.store$.dispatch(new LoadNewsByCategoryAction('game'));
-        this.store$.dispatch(new LoadEventsByCategoryAction('music'));
-        this.store$.dispatch(new LoadMealByCategoryAction('Beef'));
-        this.newsState$.subscribe(data => console.log(data));
-        this.mealState$.subscribe(data => console.log(data));
-        this.eventsState$.subscribe(data => console.log(data));
-    }
+    public showCategories(type: string): void {
+        switch (type) {
+            case 'news':
+                this.store$.dispatch(new AddNewsCategoriesAction(environment.newsCategories));
+                this.router.navigate(['./tabs/interests/news/catigories']);
+                break;
 
-    public choiseTemplate(event): void {
-        console.log(event);
-    }
+            case 'events':
+                this.store$.dispatch(new AddEventsCategoriesAction(environment.eventsCategories));
+                this.router.navigate(['./']);
+                break;
 
+            case 'meal':
+                this.store$.dispatch(new LoadMealCategoriesAction());
+                this.router.navigate(['./']);
+                break;
+
+            default:
+                break;
+        }
+    }
 }

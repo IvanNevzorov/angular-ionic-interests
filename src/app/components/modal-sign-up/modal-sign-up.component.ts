@@ -1,4 +1,4 @@
-import { State } from './../../store/index';
+import { AppState } from './../../store/index';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -23,7 +23,7 @@ export class ModalSignUpComponent implements OnInit {
         public modalController: ModalController,
         private graphqlService: GraphQLService,
         private fb: FormBuilder,
-        private store$: Store<State>,
+        private store$: Store<AppState>,
         private router: Router
     ) { }
 

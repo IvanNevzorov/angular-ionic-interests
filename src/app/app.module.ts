@@ -11,6 +11,8 @@ import { StoreModule } from '@ngrx/store';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { reducers } from './store';
+import { InterestsEffecrs } from './store/effects/interests.effects';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +23,7 @@ import { reducers } from './store';
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot(reducers),
+    [EffectsModule.forRoot([InterestsEffecrs])]
   ],
   providers: [
     StatusBar,
