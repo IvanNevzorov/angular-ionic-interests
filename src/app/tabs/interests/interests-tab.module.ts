@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 
 import { InterestsTabComponent } from './interests-tab.component';
 import { InterestsTabRoutingModule } from './interests-tab-routing.module';
-import { InterestsPageComponent } from 'src/app/pages/interests/interests-page.component';
 
 @NgModule({
   imports: [
@@ -15,8 +14,7 @@ import { InterestsPageComponent } from 'src/app/pages/interests/interests-page.c
     InterestsTabRoutingModule
   ],
   declarations: [
-    InterestsTabComponent,
-    InterestsPageComponent
+    InterestsTabComponent
   ]
 })
 export class InterestsTabModule { }

@@ -1,11 +1,11 @@
-import { InterestsPageComponent } from 'src/app/pages/interests/interests-page.component';
+import { CategoriesPageComponent } from './categories-page.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
     path: '',
-    component: InterestsPageComponent,
+    component: CategoriesPageComponent,
   }
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class InterestsPageRoutingModule { }
+export class CategoriesPageRoutingModule { }

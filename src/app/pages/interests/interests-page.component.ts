@@ -26,17 +26,17 @@ export class InterestsPageComponent {
         switch (type) {
             case 'news':
                 this.store$.dispatch(new AddNewsCategoriesAction(environment.newsCategories));
-                this.router.navigate(['./tabs/interests/news/catigories']);
+                this.router.navigate(['tabs/interests/categories']);
                 break;
 
             case 'events':
                 this.store$.dispatch(new AddEventsCategoriesAction(environment.eventsCategories));
-                this.router.navigate(['./']);
+                this.router.navigate(['tabs/interests/categories']);
                 break;
 
             case 'meal':
                 this.store$.dispatch(new LoadMealCategoriesAction());
-                this.router.navigate(['./']);
+                this.router.navigate(['tabs/interests/categories']);
                 break;
 
             default:
