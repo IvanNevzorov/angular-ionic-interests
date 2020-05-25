@@ -1,0 +1,16 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+
+    &_item {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> {{ selectedTypeInfo }} List </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" [ngSwitch]="selectedTypeInfo">
+  <ng-container *ngSwitchCase="'Meal'">
+    <ion-card *ngFor="let interest of mealInfo">
+      <img src="{{ interest.description }}" />
+      <ion-card-header>
+        <ion-card-subtitle>{{ interest.category }}</ion-card-subtitle>
+        <ion-card-title class="title">
+          {{ interest.title }}
+
+          <ion-fab-button color="success" (click)="addInterestToProfile($event, interest)">
+            <ion-icon name="add"></ion-icon>
+          </ion-fab-button>
+        </ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'News'">
+    <ion-card *ngFor="let interest of newsInfo">
+      <ion-card-header>
+        <ion-card-subtitle>{{ interest.category }}</ion-card-subtitle>
+        <ion-card-title>{{ interest.title }}</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        {{ interest.description }}
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'Events'">
+    <ion-card *ngFor="let interest of eventsInfo">
+      <img src="{{ interest.description }}" />
+      <ion-card-header>
+        <ion-card-subtitle>{{ interest.category }}</ion-card-subtitle>
+        <ion-card-title>{{ interest.title }}</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  </ng-container>
+</ion-content>

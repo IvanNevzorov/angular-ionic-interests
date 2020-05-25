@@ -1,12 +1,23 @@
-<ion-card>
-  <ion-card-header>
-    <ion-card-subtitle>Personal information</ion-card-subtitle>
-    <ion-card-title
-      >{{ userInfo.firstName }} {{ userInfo.secondName }}</ion-card-title
-    >
-  </ion-card-header>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Profile
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
 
-  <ion-card-content>
-    city
-  </ion-card-content>
-</ion-card>
+<ion-content [fullscreen]="true">
+  <ion-text color="primary">
+    <h2>User:</h2>
+    <p>{{ userInfo.firstName }} {{ userInfo.secondName }}</p>
+  </ion-text>
+
+  <ion-text color="warning">
+    <h2>Personal information</h2>
+    <p>City: {{ userInfo.city }}</p>
+  </ion-text>
+
+  <ion-button expand="block" (click)="showUserInterests()">
+    User interests
+  </ion-button>
+</ion-content>

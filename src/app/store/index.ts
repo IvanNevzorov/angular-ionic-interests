@@ -18,6 +18,8 @@ export const reducers: ActionReducerMap<AppState, UserUnionAction | InterestsUni
 export const getInterestsEntitiesStore = (state: AppState) => state.interestsState;
 export const getUserEntitiesStore = (state: AppState) => state.userState;
 
+
+
 export const getUserLoginState = createSelector(
     getUserEntitiesStore,
     (userState: UserReducer.UserState) => userState.isLogin
@@ -27,6 +29,8 @@ export const getUserState = createSelector(
     getUserEntitiesStore,
     (userState: UserReducer.UserState) => userState.user
 );
+
+
 
 export const getNewsState = createSelector(
     getInterestsEntitiesStore,
@@ -43,3 +47,17 @@ export const getEventsState = createSelector(
     (interestsState: InterestsReducer.InterestsState) => interestsState.events
 );
 
+export const getCategoriesState = createSelector(
+    getInterestsEntitiesStore,
+    (interestsState: InterestsReducer.InterestsState) => interestsState.categories
+);
+
+export const getSelectedCategoriesState = createSelector(
+    getInterestsEntitiesStore,
+    (interestsState: InterestsReducer.InterestsState) => interestsState.selectedCategories
+);
+
+export const getTypeInterestsState = createSelector(
+    getInterestsEntitiesStore,
+    (interestsState: InterestsReducer.InterestsState) => interestsState.type
+);

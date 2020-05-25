@@ -2,7 +2,7 @@ import { Interest } from './../interfaces/interests/interest.interface';
 import { Action } from '@ngrx/store';
 
 export enum InterestsActionTypes {
-    AddNewsCategoriesAction = '[News] Add News Categories Action',
+    AddNewsCategories = '[News] Add News Categories Action',
     LoadNewsByCategory = '[News] Load News By Category',
     LoadNewsByCategorySuccess = '[News] Load News By Category Success',
     LoadNewsByCategoryError = '[News] Load News By Category Error',
@@ -14,16 +14,19 @@ export enum InterestsActionTypes {
     LoadMealByCategorySuccess = '[Meal] Load Meal By Category Success',
     LoadMealByCategoryError = '[Meal] Load Meal By Category Error',
 
-    AddEventsCategoriesAction = '[Events] Add Events Categories',
+    AddEventsCategories = '[Events] Add Events Categories',
     LoadEventsByCategory = '[Events] Load Events By Category',
     LoadEventsByCategorySuccess = '[Events] Load Events By Category Success',
     LoadEventsByCategoryError = '[Events] Load Events By Category Error',
 
+    AddSelectedCategories = '[Categories] Add Selected Categories',
+
+    AddSelectedType = '[Interests] Add Selected Type',
     InterestsLoadError = '[Interests] Interests Load Error'
 }
 
 export class AddNewsCategoriesAction implements Action {
-    readonly type = InterestsActionTypes.AddNewsCategoriesAction;
+    readonly type = InterestsActionTypes.AddNewsCategories;
 
     constructor(public payload: string[]) { }
 }
@@ -85,7 +88,7 @@ export class LoadMealByCategoryErrorAction implements Action {
 
 
 export class AddEventsCategoriesAction implements Action {
-    readonly type = InterestsActionTypes.AddEventsCategoriesAction;
+    readonly type = InterestsActionTypes.AddEventsCategories;
 
     constructor(public payload: string[]) { }
 }
@@ -106,6 +109,18 @@ export class LoadEventsByCategoryErrorAction implements Action {
     readonly type = InterestsActionTypes.LoadEventsByCategoryError;
 
     constructor() { }
+}
+
+export class AddSelectedCategoriesAction implements Action {
+    readonly type = InterestsActionTypes.AddSelectedCategories;
+
+    constructor(public payload: string[]) { }
+}
+
+export class AddSelectedTypeAction implements Action {
+    readonly type = InterestsActionTypes.AddSelectedType;
+
+    constructor(public payload: string) { }
 }
 
 export class InterestsLoadErrorAction implements Action {
@@ -131,4 +146,6 @@ export type InterestsUnionAction =
     | LoadEventsByCategoryAction
     | LoadEventsByCategorySuccessAction
     | LoadEventsByCategoryErrorAction
+    | AddSelectedCategoriesAction
+    | AddSelectedTypeAction
     | InterestsLoadErrorAction;

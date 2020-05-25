@@ -4,10 +4,12 @@ import { AppState } from 'src/app/store';
 import {
     AddNewsCategoriesAction,
     AddEventsCategoriesAction,
-    LoadMealCategoriesAction
+    LoadMealCategoriesAction,
+    AddSelectedTypeAction
 } from 'src/app/store/actions/interests.action';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
     selector: 'app-interests-page',
@@ -18,29 +20,29 @@ import { Router } from '@angular/router';
 export class InterestsPageComponent {
 
     constructor(
+        public navCtrl: NavController,
         private store$: Store<AppState>,
-        private router: Router
     ) { }
 
     public showCategories(type: string): void {
         switch (type) {
-            case 'news':
+            case 'News':
                 this.store$.dispatch(new AddNewsCategoriesAction(environment.newsCategories));
-                this.router.navigate(['tabs/interests/categories']);
                 break;
 
-            case 'events':
+            case 'Events':
                 this.store$.dispatch(new AddEventsCategoriesAction(environment.eventsCategories));
-                this.router.navigate(['tabs/interests/categories']);
                 break;
 
-            case 'meal':
+            case 'Meal':
                 this.store$.dispatch(new LoadMealCategoriesAction());
-                this.router.navigate(['tabs/interests/categories']);
                 break;
 
             default:
                 break;
         }
+
+        this.store$.dispatch(new AddSelectedTypeAction(type));
+        this.navCtrl.navigateForward('/tabs/interests/categories');
     }
 }

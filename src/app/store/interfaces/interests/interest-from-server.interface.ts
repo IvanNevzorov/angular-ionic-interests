@@ -1,4 +1,5 @@
-export interface Interest {
+export interface InterestFromServer {
+    _id: string;
     title: string;
     description: string;
     category: string;

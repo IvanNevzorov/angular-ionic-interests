@@ -12,13 +12,35 @@ const routes: Routes = [
     children: [
       {
         path: 'profile',
-        loadChildren: () => import('./profile/profile-tab.module').then(m => m.ProfileTabModule),
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../pages/profile/profile-page.module').then(module => module.ProfilePageModule)
+          },
+          {
+            path: 'my-interests',
+            loadChildren: () => import('../pages/my-interests/my-interests-page.module').then(module => module.MyInterestsPageModule)
+          }
+        ]
       },
       {
         path: 'interests',
-        loadChildren: () => import('./interests/interests-tab.module').then(m => m.InterestsTabModule),
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../pages/interests/interests-page.module').then(module => module.InterestsPageModule)
+          },
+          {
+            path: 'list',
+            loadChildren: () => import('../pages/list/list-page.module').then(m => m.ListPageModule)
+          },
+          {
+            path: 'categories',
+            loadChildren: () => import('../pages/categories/categories-page.module').then(m => m.CategoriesPageModule)
+          }
+        ],
       },
       {
         path: '',

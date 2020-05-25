@@ -6,5 +6,5 @@ export interface UserRegisterAPI {
     };
     errors: {
         message: string;
-    }
+    };
 }

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/store/interfaces/user/user.interface';
+import { NavController } from '@ionic/angular';
 
 
 
@@ -17,14 +18,21 @@ export class ProfilePageComponent implements OnInit {
 
 
     constructor(
-        private store$: Store<AppState>
+        private store$: Store<AppState>,
+        private navCtrl: NavController
     ) { }
 
     ngOnInit() {
         this.userState$.subscribe(user => {
+            console.log(user);
+
             if (user) {
                 this.userInfo = user;
             }
         });
+    }
+
+    public showUserInterests() {
+        this.navCtrl.navigateForward('/tabs/profile/my-interests');
     }
 }
