@@ -4,6 +4,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/store/interfaces/user/user.interface';
 import { NavController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 
@@ -13,26 +14,18 @@ import { NavController } from '@ionic/angular';
 })
 
 export class ProfilePageComponent implements OnInit {
-    public userInfo: User;
-    public userState$: Observable<User> = this.store$.pipe(select(getUserState));
-
 
     constructor(
-        private store$: Store<AppState>,
-        private navCtrl: NavController
+        private navCtrl: NavController,
+        public auth: AuthService
     ) { }
 
     ngOnInit() {
-        this.userState$.subscribe(user => {
-            console.log(user);
-
-            if (user) {
-                this.userInfo = user;
-            }
-        });
     }
 
     public showUserInterests() {
+        console.log(this.auth);
+
         this.navCtrl.navigateForward('/tabs/profile/my-interests');
     }
 }

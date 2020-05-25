@@ -8,7 +8,6 @@ import { TabsPageRoutingModule } from './tabs-routing.module';
 import { TabsPage } from './tabs.page';
 import { ModalSingInComponent } from '../components/modal-sign-in/modal-sign-in.component';
 import { ModalSignUpComponent } from '../components/modal-sign-up/modal-sign-up.component';
-import { StartPageComponent } from '../pages/start/start-page.component';
 
 @NgModule({
   imports: [
@@ -21,8 +20,7 @@ import { StartPageComponent } from '../pages/start/start-page.component';
   declarations: [
     TabsPage,
     ModalSingInComponent,
-    ModalSignUpComponent,
-    StartPageComponent
+    ModalSignUpComponent
   ]
 })
 export class TabsPageModule { }

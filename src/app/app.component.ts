@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Store } from '@ngrx/store';
 import { CheckLoginAction } from './store/actions/user.action';
+import Auth0Cordova from '@auth0/cordova';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,8 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private store$: Store<AppState>
+    private store$: Store<AppState>,
+
   ) {
     this.initializeApp();
   }
@@ -30,6 +32,10 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      (window as any).handleOpenURL = (url: string) => {
+        Auth0Cordova.onRedirectUri(url);
+      };
     });
   }
 }
