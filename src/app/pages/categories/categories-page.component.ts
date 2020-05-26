@@ -29,7 +29,6 @@ export class CategoriesPageComponent implements OnInit {
         });
         this.categoriesState$.subscribe(categories => {
             this.categoriesInfo = categories;
-            console.log(this.categoriesInfo);
         });
     }
 

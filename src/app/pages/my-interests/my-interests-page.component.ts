@@ -37,7 +37,6 @@ export class MyInterestsPageComponent implements OnInit {
     public removeInterest(id: string): void {
         this.graphqlService.removeInterest(id).subscribe(isRemove => {
             if (isRemove) {
-                console.log(this.userInterests, id);
                 this.userInterests = this.userInterests.filter(interest => !interest._id.includes(id));
             }
         });

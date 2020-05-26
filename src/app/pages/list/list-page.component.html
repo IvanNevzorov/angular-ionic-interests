@@ -12,10 +12,15 @@
         <ion-card-subtitle>{{ interest.category }}</ion-card-subtitle>
         <ion-card-title class="title">
           {{ interest.title }}
-
-          <ion-fab-button color="success" (click)="addInterestToProfile($event, interest)">
+          <ion-fab-button
+            color="success"
+            (click)="addInterestToProfile($event, interest)"
+            class="title__btn"
+            *ngIf="isPushBtn[interest.id]"
+          >
             <ion-icon name="add"></ion-icon>
           </ion-fab-button>
+          <ion-icon name="checkmark-outline" color="success" class="title__btn" *ngIf="!isPushBtn[interest.id]"></ion-icon>
         </ion-card-title>
       </ion-card-header>
     </ion-card>
@@ -25,7 +30,18 @@
     <ion-card *ngFor="let interest of newsInfo">
       <ion-card-header>
         <ion-card-subtitle>{{ interest.category }}</ion-card-subtitle>
-        <ion-card-title>{{ interest.title }}</ion-card-title>
+        <ion-card-title class="title">
+          {{ interest.title }}
+          <ion-fab-button
+            color="success"
+            (click)="addInterestToProfile($event, interest)"
+            class="title__btn"
+            *ngIf="isPushBtn[interest.title]"
+          >
+            <ion-icon name="add"></ion-icon>
+          </ion-fab-button>
+          <ion-icon name="checkmark-outline" color="success" class="title__btn" *ngIf="!isPushBtn[interest.title]"></ion-icon>
+        </ion-card-title>
       </ion-card-header>
 
       <ion-card-content>
@@ -39,7 +55,18 @@
       <img src="{{ interest.description }}" />
       <ion-card-header>
         <ion-card-subtitle>{{ interest.category }}</ion-card-subtitle>
-        <ion-card-title>{{ interest.title }}</ion-card-title>
+        <ion-card-title class="title">
+          {{ interest.title }}
+          <ion-fab-button
+            color="success"
+            (click)="addInterestToProfile($event, interest)"
+            class="title__btn"
+            *ngIf="isPushBtn[interest.id]"
+          >
+            <ion-icon name="add"></ion-icon>
+          </ion-fab-button>
+          <ion-icon name="checkmark-outline" color="success" class="title__btn" *ngIf="!isPushBtn[interest.id]"></ion-icon>
+        </ion-card-title>
       </ion-card-header>
     </ion-card>
   </ng-container>

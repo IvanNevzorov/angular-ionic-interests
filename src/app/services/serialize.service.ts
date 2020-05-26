@@ -22,10 +22,12 @@ export class SerializeService {
         const result: Interest[] = [];
         mealAPI.meals.forEach(item => {
             result.push({
+                id: item.idMeal,
                 title: item.strMeal,
                 description: item.strMealThumb,
                 category,
-                type: 'meal'
+                type: 'meal',
+                isPushBtn: true
             });
         });
         return result;
@@ -35,10 +37,12 @@ export class SerializeService {
         const result: Interest[] = [];
         newsAPI.news.forEach(item => {
             result.push({
+                id: '',
                 title: item.title,
                 description: item.description,
                 category: item.category[0],
-                type: 'news'
+                type: 'news',
+                isPushBtn: true
             });
         });
         return result;
@@ -48,10 +52,12 @@ export class SerializeService {
         const result: Interest[] = [];
         eventsAPI._embedded.events.forEach(item => {
             result.push({
+                id: item.id,
                 title: item.name,
                 description: item.images[0].url,
                 category: item.classifications[0].segment.name,
-                type: 'events'
+                type: 'events',
+                isPushBtn: true
             });
         });
         return result;

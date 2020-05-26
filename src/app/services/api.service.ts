@@ -23,7 +23,9 @@ export class APIService {
                 .set('apikey', environment.eventsKey)
                 .set('size', '15')
         }).pipe(
-            map((data: EventsAPI) => data)
+            map((data: EventsAPI) => {
+                return data;
+            })
         );
     }
 
@@ -33,7 +35,9 @@ export class APIService {
                 .set('category', category)
                 .set('apiKey', environment.newsKey)
         }).pipe(
-            map((data: NewsAPI) => data)
+            map((data: NewsAPI) => {
+                return data;
+            })
         );
     }
 
@@ -48,7 +52,9 @@ export class APIService {
             params: new HttpParams()
                 .set('c', category)
         }).pipe(
-            map((data: MealAPI) => data)
+            map((data: MealAPI) => {
+                return data;
+            })
         );
     }
 }

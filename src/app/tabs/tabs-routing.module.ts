@@ -12,17 +12,8 @@ const routes: Routes = [
     children: [
       {
         path: 'profile',
-        canActivate: [AuthGuard],
-        children: [
-          {
-            path: '',
-            loadChildren: () => import('../pages/profile/profile-page.module').then(module => module.ProfilePageModule)
-          },
-          {
-            path: 'my-interests',
-            loadChildren: () => import('../pages/my-interests/my-interests-page.module').then(module => module.MyInterestsPageModule)
-          }
-        ]
+        loadChildren: () => import('../pages/profile/profile-page.module').then(module => module.ProfilePageModule),
+        canActivate: [AuthGuard]
       },
       {
         path: 'interests',
@@ -41,6 +32,11 @@ const routes: Routes = [
             loadChildren: () => import('../pages/categories/categories-page.module').then(m => m.CategoriesPageModule)
           }
         ],
+      },
+      {
+        path: 'my-interests',
+        canActivate: [AuthGuard],
+        loadChildren: () => import('../pages/my-interests/my-interests-page.module').then(module => module.MyInterestsPageModule)
       },
       {
         path: '',

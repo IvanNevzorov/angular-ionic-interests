@@ -70,8 +70,6 @@ export class GraphQLService {
     }
 
     public createInterest({ title, description, category, type }: Interest, user: string): Observable<boolean> {
-        console.log(user);
-
         const body = JSON.stringify({
             query: `
             mutation {

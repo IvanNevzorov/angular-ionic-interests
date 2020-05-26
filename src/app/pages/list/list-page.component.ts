@@ -14,6 +14,7 @@ import { Interests } from 'src/app/store/interfaces/interests/interests.interfac
 import { Interest } from 'src/app/store/interfaces/interests/interest.interface';
 import { User } from 'src/app/store/interfaces/user/user.interface';
 import { GraphQLService } from 'src/app/services/graphql.service';
+import { IsPushBtn } from 'src/app/store/interfaces/interests/is-push-btn.interface';
 
 @Component({
     selector: 'app-list-component',
@@ -26,6 +27,7 @@ export class ListPageComponent implements OnInit {
     public newsInfo: Interest[] = [];
     public eventsInfo: Interest[] = [];
     public mealInfo: Interest[] = [];
+    public isPushBtn: IsPushBtn = {};
     public selectedTypeInfo = '';
     public selectedCategoriesInfo: string[] = [];
     public selectedCategoriesState$: Observable<string[]> = this.store$.pipe(select(getSelectedCategoriesState));
@@ -54,8 +56,6 @@ export class ListPageComponent implements OnInit {
         });
 
         this.newsState$.subscribe((news: Interests) => {
-            console.log(news);
-
             this.newsInfo = this.getInterestsByCategories(news);
         });
 
@@ -66,14 +66,19 @@ export class ListPageComponent implements OnInit {
         this.mealState$.subscribe((meal: Interests) => {
             this.mealInfo = this.getInterestsByCategories(meal);
         });
-
-
     }
 
     private getInterestsByCategories(listInterests: Interests): Interest[] {
         let interests: Interest[] = [];
         this.selectedCategoriesInfo.forEach(category => {
             if (listInterests[category]) {
+                listInterests[category].forEach(interest => {
+                    if (this.selectedTypeInfo === 'News') {
+                        this.isPushBtn[interest.title] = true;
+                    } else {
+                        this.isPushBtn[interest.id] = true;
+                    }
+                });
                 interests = interests.concat(listInterests[category]);
             }
         });
@@ -83,8 +88,13 @@ export class ListPageComponent implements OnInit {
     public addInterestToProfile(event, interest: Interest): void {
         event.target.disabled = true;
         this.graphqlService.createInterest(interest, this.userId).subscribe(isCreate => {
-            if (isCreate) { event.target.disabled = true; }
+            if (isCreate) {
+                if (this.selectedTypeInfo === 'News') {
+                    this.isPushBtn[interest.title] = false;
+                } else {
+                    this.isPushBtn[interest.id] = false;
+                }
+            }
         });
-
     }
 }

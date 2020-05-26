@@ -24,8 +24,6 @@ export class ProfilePageComponent implements OnInit {
 
     ngOnInit() {
         this.userState$.subscribe(user => {
-            console.log(user);
-
             if (user) {
                 this.userInfo = user;
             }

@@ -6,4 +6,11 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  &__btn {
+    width: 30px;
+    min-width: 30px;
+    height: 30px;
+    max-height: 30px;
+  }
 }
