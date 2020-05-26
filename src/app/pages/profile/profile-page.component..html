@@ -1,23 +1,15 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>
-      Profile
+      profile
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-text color="primary">
-    <h2>User:</h2>
-    <p>{{ userInfo.firstName }} {{ userInfo.secondName }}</p>
-  </ion-text>
+<ion-content class="ion-padding">
+  <ion-button button expand="block" color="primary" *ngIf="!authService.isLoggedIn" (click)="authService.login()"> Log In</ion-button>
 
-  <ion-text color="warning">
-    <h2>Personal information</h2>
-    <p>City: {{ userInfo.city }}</p>
-  </ion-text>
-
-  <ion-button expand="block" (click)="showUserInterests()">
-    User interests
+  <ion-button button expand="block" color="danger" *ngIf="authService.isLoggedIn" (click)="authService.logout()">
+    Log Out
   </ion-button>
 </ion-content>

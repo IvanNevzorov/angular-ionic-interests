@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Store } from '@ngrx/store';
 import { CheckLoginAction } from './store/actions/user.action';
+import { AuthService } from './services/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -17,13 +18,15 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private store$: Store<AppState>
+    private store$: Store<AppState>,
+    private authService: AuthService
   ) {
     this.initializeApp();
   }
 
   ngOnInit() {
     this.store$.dispatch(new CheckLoginAction());
+    this.authService.handleAuthentication();
   }
 
   public initializeApp(): void {

@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { TabsPage } from './tabs.page';
-import { StartPageComponent } from '../pages/start/start-page.component';
-import { AuthGuard } from '../auth.guard';
 
 const routes: Routes = [
   {
@@ -12,7 +10,6 @@ const routes: Routes = [
     children: [
       {
         path: 'profile',
-        canActivate: [AuthGuard],
         children: [
           {
             path: '',
@@ -26,7 +23,6 @@ const routes: Routes = [
       },
       {
         path: 'interests',
-        canActivate: [AuthGuard],
         children: [
           {
             path: '',
@@ -44,13 +40,14 @@ const routes: Routes = [
       },
       {
         path: '',
-        component: StartPageComponent
+        redirectTo: '/tabs/profile',
+        pathMatch: 'full'
       }
     ]
   },
   {
     path: '**',
-    redirectTo: '/tabs',
+    redirectTo: '/tabs/profile',
     pathMatch: 'full'
   }
 ];
