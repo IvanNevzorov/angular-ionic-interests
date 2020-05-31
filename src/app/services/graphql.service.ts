@@ -11,6 +11,8 @@ import { InterestFromServer } from '../store/interfaces/interests/interest-from-
 import { GetInterestsAPI } from '../store/interfaces/interests/get-interests-api.interface';
 import { RemoveInterestAPI } from '../store/interfaces/interests/remove-interest-api.interface';
 import { CreateInterestAPI } from '../store/interfaces/interests/create-interest-api.interface';
+import { CreateImageAPI } from '../store/interfaces/image/create-image-api.interface';
+import { GetImageAPI } from '../store/interfaces/image/get-image-api.interface';
 
 @Injectable({ providedIn: 'root' })
 
@@ -136,6 +138,49 @@ export class GraphQLService {
                 .set('Accept', 'application/json')
         }).pipe(
             map((response: GetInterestsAPI) => response.data.getInterests)
+        );
+    }
+
+    public createImage(imageSrc: string, user: string): Observable<boolean> {
+        const body = JSON.stringify({
+            query: `
+            mutation {
+                createImage(image: {
+                    imageSrc: "${imageSrc}",
+                    user: "${user}"
+                })
+            }
+            `
+        });
+
+        return this.http.post(environment.graphql, body, {
+            headers: new HttpHeaders()
+                .set('Content-Type', 'application/json')
+                .set('Accept', 'application/json')
+        }).pipe(
+            map((response: CreateImageAPI) => response.data.createImage)
+        );
+    }
+
+    public getImage(id: string): Observable<string> {
+        const body = JSON.stringify({
+            query: `
+            {
+                getImage(
+                    id: "${id}"
+                ){
+                    imageSrc
+                }
+            }
+            `
+        });
+
+        return this.http.post(environment.graphql, body, {
+            headers: new HttpHeaders()
+                .set('Content-Type', 'application/json')
+                .set('Accept', 'application/json')
+        }).pipe(
+            map((response: GetImageAPI) => response.data.getImage)
         );
     }
 }

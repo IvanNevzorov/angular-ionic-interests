@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  graphql: 'http://localhost:5000/graphql',
+  graphql: 'https://salty-falls-94264.herokuapp.com/graphql',
 
   eventsByCategoryUrl: 'http://app.ticketmaster.com/discovery/v2/events.json',
   eventsKey: '0qPTAu6ZOV8ZMnyWLFqROp7WdgGmuQgH',

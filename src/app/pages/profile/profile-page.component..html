@@ -9,7 +9,12 @@
 <ion-content [fullscreen]="true">
   <ion-card>
     <ion-item>
-      <ion-icon name="logo-octocat"></ion-icon>
+      <ion-avatar>
+        <img [src]="image">
+      </ion-avatar>
+      <ion-chip outline color="primary" (click)="makeFoto()">
+        <ion-label>Edit</ion-label>
+      </ion-chip>
     </ion-item>
 
     <ion-card-content>
