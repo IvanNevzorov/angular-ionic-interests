@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import {
     AppState,
@@ -36,6 +36,12 @@ export class ListPageComponent implements OnInit {
     public eventsState$: Observable<Interests> = this.store$.pipe(select(getEventsState));
     public mealState$: Observable<Interests> = this.store$.pipe(select(getMealState));
     public userState$: Observable<User> = this.store$.pipe(select(getUserState));
+    public subscruberUser: Subscription;
+    public subscruberMeal: Subscription;
+    public subscruberEvents: Subscription;
+    public subscruberNews: Subscription;
+    public subscruberType: Subscription;
+    public subscruberCategories: Subscription;
 
     constructor(
         private store$: Store<AppState>,
@@ -43,29 +49,11 @@ export class ListPageComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.userState$.subscribe((user: User) => {
-            this.userId = user._id;
-        });
+        this.getSubscriptions();
+    }
 
-        this.selectedTypeState$.subscribe((type: string) => {
-            this.selectedTypeInfo = type;
-        });
-
-        this.selectedCategoriesState$.subscribe((categories: string[]) => {
-            this.selectedCategoriesInfo = categories;
-        });
-
-        this.newsState$.subscribe((news: Interests) => {
-            this.newsInfo = this.getInterestsByCategories(news);
-        });
-
-        this.eventsState$.subscribe((events: Interests) => {
-            this.eventsInfo = this.getInterestsByCategories(events);
-        });
-
-        this.mealState$.subscribe((meal: Interests) => {
-            this.mealInfo = this.getInterestsByCategories(meal);
-        });
+    ionViewDidLeave() {
+        this.unsubscribeFromSubscriptions();
     }
 
     private getInterestsByCategories(listInterests: Interests): Interest[] {
@@ -96,5 +84,40 @@ export class ListPageComponent implements OnInit {
                 }
             }
         });
+    }
+
+    public getSubscriptions(): void {
+        this.subscruberUser = this.userState$.subscribe((user: User) => {
+            this.userId = user._id;
+        });
+
+        this.subscruberType = this.selectedTypeState$.subscribe((type: string) => {
+            this.selectedTypeInfo = type;
+        });
+
+        this.subscruberCategories = this.selectedCategoriesState$.subscribe((categories: string[]) => {
+            this.selectedCategoriesInfo = categories;
+        });
+
+        this.subscruberNews = this.newsState$.subscribe((news: Interests) => {
+            this.newsInfo = this.getInterestsByCategories(news);
+        });
+
+        this.subscruberEvents = this.eventsState$.subscribe((events: Interests) => {
+            this.eventsInfo = this.getInterestsByCategories(events);
+        });
+
+        this.subscruberMeal = this.mealState$.subscribe((meal: Interests) => {
+            this.mealInfo = this.getInterestsByCategories(meal);
+        });
+    }
+
+    public unsubscribeFromSubscriptions(): void {
+        this.subscruberUser.unsubscribe();
+        this.subscruberType.unsubscribe();
+        this.subscruberCategories.unsubscribe();
+        this.subscruberNews.unsubscribe();
+        this.subscruberEvents.unsubscribe();
+        this.subscruberMeal.unsubscribe();
     }
 }

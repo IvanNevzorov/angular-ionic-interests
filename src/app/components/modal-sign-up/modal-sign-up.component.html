@@ -12,38 +12,40 @@
       <ion-item>
         <ion-label color="primary" floating>First name</ion-label>
         <ion-input formControlName="firstName"></ion-input>
+        <app-control-messages [control]="formRegistration.get('firstName')"></app-control-messages>
       </ion-item>
 
       <ion-item>
         <ion-label color="primary" floating>Second name</ion-label>
         <ion-input formControlName="secondName"></ion-input>
+        <app-control-messages [control]="formRegistration.get('secondName')"></app-control-messages>
       </ion-item>
 
       <ion-item>
         <ion-label color="primary" floating>City</ion-label>
         <ion-input formControlName="city"></ion-input>
+        <app-control-messages [control]="formRegistration.get('city')"></app-control-messages>
       </ion-item>
 
       <ion-item>
         <ion-label color="primary" stacked>Enter email</ion-label>
         <ion-input type="email" formControlName="email"></ion-input>
+        <app-control-messages [control]="formRegistration.get('email')"></app-control-messages>
       </ion-item>
 
       <ion-item>
         <ion-label color="primary" stacked>Enter password</ion-label>
         <ion-input type="password" formControlName="password"></ion-input>
+        <app-control-messages [control]="formRegistration.get('password')"></app-control-messages>
       </ion-item>
 
       <ion-item>
         <ion-label color="primary" stacked>Repeat password</ion-label>
         <ion-input type="password" formControlName="repeatPassword"></ion-input>
+        <app-control-messages [control]="formRegistration.get('repeatPassword')"></app-control-messages>
       </ion-item>
     </ion-list>
-    <ion-button
-      expand="full"
-      [disabled]="formRegistration.invalid"
-      (click)="submit()"
-    >
+    <ion-button expand="full" [disabled]="formRegistration.invalid" (click)="submit()">
       Registration
     </ion-button>
   </form>

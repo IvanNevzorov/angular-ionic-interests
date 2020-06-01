@@ -3,19 +3,20 @@ import { GraphQLService } from 'src/app/services/graphql.service';
 import { InterestFromServer } from 'src/app/store/interfaces/interests/interest-from-server.interface';
 import { Store, select } from '@ngrx/store';
 import { AppState, getUserState } from 'src/app/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/store/interfaces/user/user.interface';
 
 @Component({
     selector: 'app-my-interests-page',
-    templateUrl: './my-interests-page.component.html',
-    styleUrls: ['./my-interests-page.component.scss']
+    templateUrl: './user-interests.component.html',
+    styleUrls: ['./user-interests.component.scss']
 })
 
-export class MyInterestsPageComponent implements OnInit {
+export class UserInterestsComponent implements OnInit {
     public userId: string;
     public userInterests: InterestFromServer[] = [];
     public userState$: Observable<User> = this.store$.pipe(select(getUserState));
+    public subscruberUser: Subscription;
 
 
     constructor(
@@ -24,14 +25,20 @@ export class MyInterestsPageComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.userState$.subscribe((user: User) => {
+        this.subscruberUser = this.userState$.subscribe((user: User) => {
             this.userId = user._id;
             if (this.userId) {
                 this.graphqlService.getInterests(this.userId).subscribe(interests => {
                     this.userInterests = interests;
+                    console.log(this.userInterests);
+
                 });
             }
         });
+    }
+
+    ionViewDidLeave() {
+        this.subscruberUser.unsubscribe();
     }
 
     public removeInterest(id: string): void {

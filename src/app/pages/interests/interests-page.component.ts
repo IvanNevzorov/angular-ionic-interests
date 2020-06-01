@@ -8,7 +8,6 @@ import {
     AddSelectedTypeAction
 } from 'src/app/store/actions/interests.action';
 import { environment } from 'src/environments/environment';
-import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 
 @Component({

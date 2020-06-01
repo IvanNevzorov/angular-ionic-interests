@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { AppState, getCategoriesState, getTypeInterestsState } from 'src/app/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { NavController } from '@ionic/angular';
 import { AddSelectedCategoriesAction, LoadNewsByCategoryAction, LoadEventsByCategoryAction, LoadMealByCategoryAction } from 'src/app/store/actions/interests.action';
 
@@ -17,6 +17,8 @@ export class CategoriesPageComponent implements OnInit {
     public selectedTypeInfo = '';
     public categoriesState$: Observable<string[]> = this.store$.pipe(select(getCategoriesState));
     public selectedTypeState$: Observable<string> = this.store$.pipe(select(getTypeInterestsState));
+    public subscruberType: Subscription;
+    public subscruberCategories: Subscription;
 
     constructor(
         private store$: Store<AppState>,
@@ -24,12 +26,17 @@ export class CategoriesPageComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.selectedTypeState$.subscribe(type => {
+        this.subscruberType = this.selectedTypeState$.subscribe(type => {
             this.selectedTypeInfo = type;
         });
-        this.categoriesState$.subscribe(categories => {
+        this.subscruberCategories = this.categoriesState$.subscribe(categories => {
             this.categoriesInfo = categories;
         });
+    }
+
+    ionViewDidLeave() {
+        this.subscruberType.unsubscribe();
+        this.subscruberCategories.unsubscribe();
     }
 
     public chngeToggle(event): void {

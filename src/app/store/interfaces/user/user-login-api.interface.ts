@@ -4,7 +4,9 @@ export interface UserLoginAPI {
     data: {
         login: User;
     };
-    errors: {
-        message: string;
-    }
+    errors: [
+        {
+            message: string;
+        }
+    ]
 }

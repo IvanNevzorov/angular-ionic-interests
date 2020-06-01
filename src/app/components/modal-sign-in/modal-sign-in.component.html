@@ -7,23 +7,20 @@
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen>
-  <form [formGroup]="formAuthorization">
+  <form [formGroup]="formAuthorization" #formDirective="ngForm" (ngSubmit)="submitForm(myFformAuthorizationorm, formDirective)">
     <ion-list>
       <ion-item>
         <ion-label color="primary" stacked>Enter login</ion-label>
         <ion-input type="email" formControlName="login"></ion-input>
       </ion-item>
-
+      <app-control-messages [control]="formAuthorization.get('login')"></app-control-messages>
       <ion-item>
         <ion-label color="primary" stacked>Enter password</ion-label>
         <ion-input type="password" formControlName="password"></ion-input>
       </ion-item>
+      <app-control-messages [control]="formAuthorization.get('password')"></app-control-messages>
     </ion-list>
-    <ion-button 
-      expand="full" 
-      [disabled]="formAuthorization.invalid"
-      (click)="submit()"
-    >
+    <ion-button expand="full" [disabled]="formAuthorization.invalid" type="submit">
       Authorization
     </ion-button>
   </form>

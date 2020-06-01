@@ -1,5 +1,5 @@
 import { AppState, getUserLoginState } from './store/index';
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 
@@ -11,7 +11,6 @@ import { NavController } from '@ionic/angular';
 export class AuthGuard implements CanActivate {
     public isLogin = false;
     public loginState$: Observable<boolean> = this.store$.pipe(select(getUserLoginState));
-    public subscriber: Subscription;
 
     constructor(
         private store$: Store<AppState>,

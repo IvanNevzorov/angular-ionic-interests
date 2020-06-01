@@ -34,11 +34,6 @@ const routes: Routes = [
         ],
       },
       {
-        path: 'my-interests',
-        canActivate: [AuthGuard],
-        loadChildren: () => import('../pages/my-interests/my-interests-page.module').then(module => module.MyInterestsPageModule)
-      },
-      {
         path: '',
         component: StartPageComponent
       }

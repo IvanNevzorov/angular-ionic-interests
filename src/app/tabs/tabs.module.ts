@@ -9,6 +9,7 @@ import { TabsPage } from './tabs.page';
 import { ModalSingInComponent } from '../components/modal-sign-in/modal-sign-in.component';
 import { ModalSignUpComponent } from '../components/modal-sign-up/modal-sign-up.component';
 import { StartPageComponent } from '../pages/start/start-page.component';
+import { ControlMessagesComponent } from '../components/control-messages/control-messages.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { StartPageComponent } from '../pages/start/start-page.component';
     TabsPage,
     ModalSingInComponent,
     ModalSignUpComponent,
-    StartPageComponent
+    StartPageComponent,
+    ControlMessagesComponent
   ]
 })
 export class TabsPageModule { }

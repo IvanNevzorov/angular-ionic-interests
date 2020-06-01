@@ -1,27 +1,42 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Profile
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<div class="ion-page" main>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Profile</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-card>
-    <ion-item>
-      <ion-avatar>
-        <img [src]="image">
-      </ion-avatar>
-      <ion-chip outline color="primary" (click)="makeFoto()">
-        <ion-label>Edit</ion-label>
-      </ion-chip>
-    </ion-item>
+  <ion-content padding>
+    <ion-list>
+      <!-- IMAGE -->
+      <ion-item class="image">
+        <div class="image">
+          <img [src]="imageUrl" class="image__item" />
+          <div class="image__buttons">
+            <ion-chip outline color="primary" (click)="takePicture()">
+              <ion-icon name="camera"></ion-icon>
+              <ion-label>Camera</ion-label>
+            </ion-chip>
 
-    <ion-card-content>
-      <h2>User:</h2>
-      <p>{{ userInfo.firstName }} {{ userInfo.secondName }}</p>
-      <h2>Personal information</h2>
-      <p>City: {{ userInfo.city }}</p>
-    </ion-card-content>
-  </ion-card>
-</ion-content>
+            <ion-chip outline color="primary" (click)="takePicture()">
+              <ion-icon name="image-outline"></ion-icon>
+              <ion-label>Gallery</ion-label>
+            </ion-chip>
+          </div>
+        </div>
+      </ion-item>
+
+      <ion-toolbar (ionChange)="navigate($event)">
+        <ion-segment value="info">
+          <ion-segment-button value="info">
+            <ion-label>Info</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="my-interests">
+            <ion-label>My interests</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-toolbar>
+
+      <router-outlet></router-outlet>
+    </ion-list>
+  </ion-content>
+</div>

@@ -17,12 +17,8 @@ export class CameraService {
         }
 
         await this.camera.getPicture(options).then((imageData) => {
-
             this.imageStr = `data:image/jpeg;base64,${imageData}`;
-
-
         }, (err) => {
-            // Handle error
             console.log("Camera issue: " + err);
         });
 

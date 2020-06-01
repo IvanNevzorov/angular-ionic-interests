@@ -1,6 +1,6 @@
 import { AppState } from './../../store/index';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Store } from '@ngrx/store';
@@ -8,6 +8,7 @@ import { ModalController } from '@ionic/angular';
 
 import { GraphQLService } from 'src/app/services/graphql.service';
 import { UserSignInAction } from 'src/app/store/actions/user.action';
+import { ValidationService } from 'src/app/services/validation.service';
 
 
 @Component({
@@ -29,12 +30,12 @@ export class ModalSignUpComponent implements OnInit {
 
     ngOnInit() {
         this.formRegistration = this.fb.group({
-            firstName: '',
-            secondName: '',
-            city: '',
-            email: '',
-            password: '',
-            repeatPassword: ''
+            firstName: ['', [Validators.required]],
+            secondName: ['', [Validators.required]],
+            city: ['', [Validators.required]],
+            email: ['', [Validators.required, ValidationService.emailValidator]],
+            password: ['', [Validators.required, ValidationService.passwordValidator]],
+            repeatPassword: ['', [Validators.required, ValidationService.passwordValidator]]
         })
     }
 
