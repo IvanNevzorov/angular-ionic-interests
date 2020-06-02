@@ -7,6 +7,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Store } from '@ngrx/store';
 import { CheckLoginAction } from './store/actions/user.action';
 
+import Auth0Cordova from '@auth0/cordova';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -30,6 +32,11 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+
+      (window as any).handleOpenURL = (url: string) => {
+        Auth0Cordova.onRedirectUri(url);
+      }
     });
   }
 }

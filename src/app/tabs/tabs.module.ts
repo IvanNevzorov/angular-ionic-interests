@@ -10,6 +10,9 @@ import { ModalSingInComponent } from '../components/modal-sign-in/modal-sign-in.
 import { ModalSignUpComponent } from '../components/modal-sign-up/modal-sign-up.component';
 import { StartPageComponent } from '../pages/start/start-page.component';
 import { ControlMessagesComponent } from '../components/control-messages/control-messages.component';
+import { IonicStorageModule } from '@ionic/storage';
+import { AuthService } from '../services/auth/auth.servise';
+import { SafariViewController } from '@ionic-native/safari-view-controller/ngx';
 
 @NgModule({
   imports: [
@@ -17,7 +20,8 @@ import { ControlMessagesComponent } from '../components/control-messages/control
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    TabsPageRoutingModule
+    TabsPageRoutingModule,
+    IonicStorageModule.forRoot()
   ],
   declarations: [
     TabsPage,
@@ -25,6 +29,10 @@ import { ControlMessagesComponent } from '../components/control-messages/control
     ModalSignUpComponent,
     StartPageComponent,
     ControlMessagesComponent
+  ],
+  providers: [
+    AuthService,
+    SafariViewController
   ]
 })
 export class TabsPageModule { }
