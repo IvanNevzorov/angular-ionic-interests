@@ -41,7 +41,7 @@ export class ModalSingInComponent implements OnInit {
         this.modalController.dismiss();
     }
 
-    public submit(formData: any, formDirective: FormGroupDirective): void {
+    public submitForm(formData: any, formDirective: FormGroupDirective): void {
         this.graphqlService.login(this.formAuthorization.value)
             .subscribe(response => {
                 if (!response.errors) {

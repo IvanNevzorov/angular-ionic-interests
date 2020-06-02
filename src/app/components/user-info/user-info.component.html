@@ -1,5 +1,5 @@
 <!-- NAME -->
-<ion-item (click)="updateName()">
+<ion-item>
   <ion-label>
     <ion-grid>
       <ion-row>
@@ -11,7 +11,7 @@
 </ion-item>
 
 <!-- EMAIL -->
-<ion-item (click)="updateEmail()">
+<ion-item>
   <ion-label>
     <ion-grid>
       <ion-row>
@@ -28,7 +28,7 @@
 </ion-item>
 
 <!-- PASSWORD -->
-<ion-item (click)="updatePassword()">
+<ion-item>
   <ion-label>
     <ion-grid>
       <ion-row>
@@ -42,13 +42,9 @@
     <ion-row>
       <ion-col class="text-left" size="5" class="ion-align-self-center">Change DoB</ion-col>
       <ion-col class="text-center" size="7">
-        <ion-datetime
-          displayFormat="DD/MM/YYYY"
-          value="userProfile?.birthDate"
-          placeholder="Select date"
-          [(ngModel)]="birthDate"
-          (ionChange)="updateDOB(birthDate)"
-        ></ion-datetime>
+        <ion-datetime displayFormat="DD/MM/YYYY" value="birthDate" placeholder="Select date" [(ngModel)]="birthDate"
+          ngDefaultControl>
+        </ion-datetime>
       </ion-col>
     </ion-row>
   </ion-grid>

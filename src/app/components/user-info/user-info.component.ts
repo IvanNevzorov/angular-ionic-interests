@@ -10,6 +10,7 @@ import { AppState, getUserState } from 'src/app/store';
 })
 
 export class UserInfoComponent implements OnInit {
+    public birthDate: Date = null;
     public userProfile: User;
     public userState$: Observable<User> = this.store$.pipe(select(getUserState));
     public subscruberUser: Subscription;

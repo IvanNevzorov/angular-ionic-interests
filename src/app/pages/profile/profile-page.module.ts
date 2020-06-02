@@ -4,11 +4,14 @@ import { ProfilePageRoutingModule } from './profile-page-routing';
 import { CommonModule } from '@angular/common';
 import { UserInterestsComponent } from 'src/app/components/user-interests/user-interests.component';
 import { UserInfoComponent } from 'src/app/components/user-info/user-info.component';
+import { FormsModule } from '@angular/forms';
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
 
 @NgModule({
     imports: [
         ProfilePageRoutingModule,
-        CommonModule
+        CommonModule,
+        FormsModule
     ],
     exports: [],
     declarations: [
@@ -16,6 +19,6 @@ import { UserInfoComponent } from 'src/app/components/user-info/user-info.compon
         UserInterestsComponent,
         UserInfoComponent
     ],
-    providers: [],
+    providers: [ImagePicker],
 })
 export class ProfilePageModule { }

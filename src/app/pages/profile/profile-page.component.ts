@@ -4,8 +4,8 @@ import { Store, select } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/store/interfaces/user/user.interface';
 import { NavController } from '@ionic/angular';
-import { CameraService } from '../../services/camera.service'
-import { GraphQLService } from 'src/app/services/graphql.service';
+import { CameraService } from '../../services/camera.service';
+import { ImagePicker, ImagePickerOptions } from '@ionic-native/image-picker/ngx';
 
 
 
@@ -16,6 +16,7 @@ import { GraphQLService } from 'src/app/services/graphql.service';
 })
 
 export class ProfilePageComponent implements OnInit {
+    public segmentValue: string = 'info';
     public imageUrl: String = 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y'
     public userProfile: User;
     public userState$: Observable<User> = this.store$.pipe(select(getUserState));
@@ -25,7 +26,8 @@ export class ProfilePageComponent implements OnInit {
     constructor(
         private store$: Store<AppState>,
         private navCtrl: NavController,
-        private cameraService: CameraService
+        private cameraService: CameraService,
+        private imagePicker: ImagePicker
     ) { }
 
     ngOnInit() {
@@ -34,6 +36,11 @@ export class ProfilePageComponent implements OnInit {
                 this.userProfile = user;
             }
         });
+    }
+
+    ionViewWillEnter() {
+        this.segmentValue = 'info';
+        console.log();
 
         this.navCtrl.navigateForward('/tabs/profile/info');
     }
@@ -50,8 +57,20 @@ export class ProfilePageComponent implements OnInit {
         });
     }
 
+    public openGallery(): void {
+        this.imagePicker.getPictures({
+            maximumImagesCount: 5,
+            outputType: 1
+        }).then(file_uris => {
+            this.imageUrl = `data:image/jpeg;base64,${file_uris[0]}`;
+            console.log(file_uris);
+        },
+            err => console.log('uh oh')
+        );
+    }
+
     public navigate(event): void {
-        const path = event.detail.value;
-        this.navCtrl.navigateForward(`/tabs/profile/${path}`);
+        this.segmentValue = event.detail.value;
+        this.navCtrl.navigateForward(`/tabs/profile/${this.segmentValue}`);
     }
 }

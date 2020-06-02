@@ -17,7 +17,7 @@
               <ion-label>Camera</ion-label>
             </ion-chip>
 
-            <ion-chip outline color="primary" (click)="takePicture()">
+            <ion-chip outline color="primary" (click)="openGallery()">
               <ion-icon name="image-outline"></ion-icon>
               <ion-label>Gallery</ion-label>
             </ion-chip>
@@ -26,7 +26,7 @@
       </ion-item>
 
       <ion-toolbar (ionChange)="navigate($event)">
-        <ion-segment value="info">
+        <ion-segment value="{{segmentValue}}">
           <ion-segment-button value="info">
             <ion-label>Info</ion-label>
           </ion-segment-button>
