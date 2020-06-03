@@ -95,10 +95,10 @@
       "cordova-plugin-telerik-imagepicker": {},
       "cordova-plugin-safariviewcontroller": {},
       "cordova-plugin-customurlscheme": {
-        "URL_SCHEME": "http://localhost:8080/tabs",
-        "ANDROID_SCHEME": "http://localhost:8080/tabs",
+        "URL_SCHEME": "io.ionic.starter",
+        "ANDROID_SCHEME": "io.ionic.starter",
         "ANDROID_HOST": "dev--pxr6qcq.eu.auth0.com",
-        "ANDROID_PATHPREFIX": "C:\\Program Files\\Git\\cordova\\http;\\localhost;8080\\tabs\\callback"
+        "ANDROID_PATHPREFIX": "C:/Program Files/Git/cordova/io.ionic.starter/callback"
       }
     },
     "platforms": [
