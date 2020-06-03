@@ -5,6 +5,7 @@ import { Store, select } from '@ngrx/store';
 import { AppState, getUserState } from 'src/app/store';
 import { Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/store/interfaces/user/user.interface';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
     selector: 'app-my-interests-page',
@@ -22,6 +23,7 @@ export class UserInterestsComponent implements OnInit {
     constructor(
         private graphqlService: GraphQLService,
         private store$: Store<AppState>,
+        private socialSharing: SocialSharing
     ) { }
 
     ngOnInit() {
@@ -30,8 +32,6 @@ export class UserInterestsComponent implements OnInit {
             if (this.userId) {
                 this.graphqlService.getInterests(this.userId).subscribe(interests => {
                     this.userInterests = interests;
-                    console.log(this.userInterests);
-
                 });
             }
         });
@@ -39,6 +39,10 @@ export class UserInterestsComponent implements OnInit {
 
     ionViewDidLeave() {
         this.subscruberUser.unsubscribe();
+    }
+
+    public sharingInterest(interest: InterestFromServer): void {
+        this.socialSharing.shareWithOptions({ message: 'Тест Social Sharing' });
     }
 
     public removeInterest(id: string): void {

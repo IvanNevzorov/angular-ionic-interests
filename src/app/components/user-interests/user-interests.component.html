@@ -1,13 +1,17 @@
-<ion-card *ngFor="let interest of userInterests" class="card">
-  <img src="{{ interest.description }}" />
-  <ion-card-header class="card__content">
+<ion-card *ngFor="let interest of userInterests" class="user-interest">
+  <img src="{{ interest.description }}" class="user-interest__image" />
+  <ion-card-header class="user-interest__content">
     <ion-card-subtitle>{{ interest.category }}</ion-card-subtitle>
-    <ion-card-title class="title" class="card__content_item">
+    <ion-card-title class="title">
       {{ interest.title }}
-
+    </ion-card-title>
+    <div class="user-interest__content_buttons">
+      <ion-fab-button color="success" (click)="sharingInterest(interest)" class="btn">
+        <ion-icon name="share-social-outline"></ion-icon>
+      </ion-fab-button>
       <ion-fab-button color="danger" (click)="removeInterest(interest._id)" class="btn">
         <ion-icon name="close-outline"></ion-icon>
       </ion-fab-button>
-    </ion-card-title>
+    </div>
   </ion-card-header>
 </ion-card>

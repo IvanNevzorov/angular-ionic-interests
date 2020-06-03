@@ -5,9 +5,6 @@ import { Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/store/interfaces/user/user.interface';
 import { NavController } from '@ionic/angular';
 import { CameraService } from '../../services/camera.service';
-import { ImagePicker, ImagePickerOptions } from '@ionic-native/image-picker/ngx';
-
-
 
 @Component({
     selector: 'app-profile-page',
@@ -22,12 +19,10 @@ export class ProfilePageComponent implements OnInit {
     public userState$: Observable<User> = this.store$.pipe(select(getUserState));
     public subscruberUser: Subscription;
 
-
     constructor(
         private store$: Store<AppState>,
         private navCtrl: NavController,
-        private cameraService: CameraService,
-        private imagePicker: ImagePicker
+        private cameraService: CameraService
     ) { }
 
     ngOnInit() {
@@ -40,8 +35,6 @@ export class ProfilePageComponent implements OnInit {
 
     ionViewWillEnter() {
         this.segmentValue = 'info';
-        console.log();
-
         this.navCtrl.navigateForward('/tabs/profile/info');
     }
 
@@ -58,15 +51,11 @@ export class ProfilePageComponent implements OnInit {
     }
 
     public openGallery(): void {
-        this.imagePicker.getPictures({
-            maximumImagesCount: 5,
-            outputType: 1
-        }).then(file_uris => {
-            this.imageUrl = `data:image/jpeg;base64,${file_uris[0]}`;
-            console.log(file_uris);
-        },
-            err => console.log('uh oh')
-        );
+        this.cameraService.openGallery().then(imageSrc => {
+            if (imageSrc) {
+                this.imageUrl = imageSrc;
+            }
+        });
     }
 
     public navigate(event): void {

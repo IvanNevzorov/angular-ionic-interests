@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { UserInterestsComponent } from 'src/app/components/user-interests/user-interests.component';
 import { UserInfoComponent } from 'src/app/components/user-info/user-info.component';
 import { FormsModule } from '@angular/forms';
-import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @NgModule({
     imports: [
@@ -19,6 +19,8 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
         UserInterestsComponent,
         UserInfoComponent
     ],
-    providers: [ImagePicker],
+    providers: [
+        SocialSharing
+    ],
 })
 export class ProfilePageModule { }
