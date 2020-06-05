@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { TabsPage } from './tabs.page';
-import { StartPageComponent } from '../pages/start/start-page.component';
 import { AuthGuard } from '../auth.guard';
 
 const routes: Routes = [
@@ -25,17 +24,17 @@ const routes: Routes = [
           },
           {
             path: 'list',
-            loadChildren: () => import('../pages/list/list-page.module').then(m => m.ListPageModule)
+            loadChildren: () => import('../pages/list/list-page.module').then(module => module.ListPageModule)
           },
           {
             path: 'categories',
-            loadChildren: () => import('../pages/categories/categories-page.module').then(m => m.CategoriesPageModule)
+            loadChildren: () => import('../pages/categories/categories-page.module').then(module => module.CategoriesPageModule)
           }
         ],
       },
       {
-        path: '',
-        component: StartPageComponent
+        path: 'home',
+        loadChildren: () => import('../pages/home/home-page.module').then(module => module.HomePageModule)
       }
     ]
   },

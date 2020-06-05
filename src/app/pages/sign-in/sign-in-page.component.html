@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="chevron-back-outline" (click)="navigateDefault()"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="primary">
+      Welcome! Sign In
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <form class="form" [formGroup]="formAuthorization" (ngSubmit)="loginUser(formAuthorization.value)">
+    <ion-item>
+      <ion-label position="floating" color="primary">Email</ion-label>
+      <ion-input type="text" formControlName="login"></ion-input>
+    </ion-item>
+    <app-control-messages [control]="formAuthorization.get('login')"></app-control-messages>
+
+    <ion-item>
+      <ion-label position="floating" color="primary">Password</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+    <app-control-messages [control]="formAuthorization.get('password')"></app-control-messages>
+
+    <ion-button type="submit" expand="block" [disabled]="formAuthorization.invalid">Sign In</ion-button>
+  </form>
+  <ion-content padding>
+    <ion-row>
+      <ion-col size="6" class="ion-align-self-center"> No account yet? </ion-col>
+      <ion-col size="6">
+        <ion-chip color="secondary" (click)="navigate('sign-up')">
+          <ion-label>Create an account</ion-label>
+        </ion-chip>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="ion-align-self-center"> Forgot Password? </ion-col>
+      <ion-col size="6" (click)="navigate('/reset-password')">
+        <ion-chip color="secondary" (click)="navigate('/signup')">
+          <ion-label>Reset Password</ion-label>
+        </ion-chip>
+      </ion-col>
+    </ion-row>
+  </ion-content>
+</ion-content>

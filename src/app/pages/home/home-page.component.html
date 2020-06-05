@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Home</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="navigate('sign-in')" *ngIf="!isLogin">
+        <ion-icon slot="icon-only" name="log-in-outline"></ion-icon>
+      </ion-button>
+      <ion-button (click)="navigate('sign-up')" *ngIf="!isLogin">
+        <ion-icon slot="icon-only" name="person-add-outline" (click)="navigate('sign-up')"></ion-icon>
+      </ion-button>
+      <app-sign-out *ngIf="isLogin"></app-sign-out>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="image">
+    <img src="../../../assets/interests.svg" class="image__item" />
+  </div>
+</ion-content>

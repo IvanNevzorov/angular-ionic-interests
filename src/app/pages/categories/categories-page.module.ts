@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CategoriesPageComponent } from './categories-page.component';
 import { CategoriesPageRoutingModule } from './categories-page-routing.module';
 import { CommonModule } from '@angular/common';
+import { SignOutComponent } from 'src/app/components/sign-out/sign-out.component';
 
 @NgModule({
     imports: [
@@ -10,7 +11,10 @@ import { CommonModule } from '@angular/common';
         CategoriesPageRoutingModule
     ],
     exports: [],
-    declarations: [CategoriesPageComponent],
+    declarations: [
+        CategoriesPageComponent,
+        SignOutComponent
+    ],
     providers: [],
 })
 export class CategoriesPageModule { }

@@ -13,8 +13,8 @@ import { CameraService } from '../../services/camera.service';
 })
 
 export class ProfilePageComponent implements OnInit {
-    public segmentValue: string = 'info';
-    public imageUrl: String = 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y'
+    public segmentValue = 'info';
+    public imageUrl: String = 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y';
     public userProfile: User;
     public userState$: Observable<User> = this.store$.pipe(select(getUserState));
     public subscruberUser: Subscription;

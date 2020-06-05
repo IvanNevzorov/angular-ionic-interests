@@ -14,7 +14,8 @@ export class AuthGuard implements CanActivate {
 
     constructor(
         private store$: Store<AppState>,
-        private navCtrl: NavController) {
+        private navCtrl: NavController
+    ) {
         this.loginState$.subscribe(isLoginState => {
             if (isLoginState) {
                 this.isLogin = isLoginState;
