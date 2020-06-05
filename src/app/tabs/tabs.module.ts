@@ -7,6 +7,7 @@ import { TabsPageRoutingModule } from './tabs-routing.module';
 
 import { TabsPage } from './tabs.page';
 import { ControlMessagesComponent } from '../components/control-messages/control-messages.component';
+import { SignOutComponent } from '../components/sign-out/sign-out.component';
 
 @NgModule({
   imports: [

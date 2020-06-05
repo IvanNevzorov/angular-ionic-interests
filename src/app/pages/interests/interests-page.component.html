@@ -1,20 +1,31 @@
-<ion-list>
-  <ion-item [routerLink]="['categories']" (click)="showCategories('News')">
-    <ion-icon slot="start" name="newspaper-outline" style="color: #E63135;"></ion-icon>
-    <ion-label>
-      <h3>News</h3>
-    </ion-label>
-  </ion-item>
-  <ion-item [routerLink]="['categories']" (click)="showCategories('Events')">
-    <ion-icon slot="start" name="game-controller-outline" style="color: #F46529;"></ion-icon>
-    <ion-label>
-      <h3>Events</h3>
-    </ion-label>
-  </ion-item>
-  <ion-item [routerLink]="['categories']" (click)="showCategories('Meal')">
-    <ion-icon slot="start" name="fast-food-outline" style="color: #FFD439;"></ion-icon>
-    <ion-label>
-      <h3>Meal</h3>
-    </ion-label>
-  </ion-item>
-</ion-list>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> Interests </ion-title>
+    <ion-buttons slot="end">
+      <app-sign-out></app-sign-out>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item [routerLink]="['categories']" (click)="showCategories('News')">
+      <ion-icon slot="start" name="newspaper-outline" style="color: #e63135;"></ion-icon>
+      <ion-label>
+        <h3>News</h3>
+      </ion-label>
+    </ion-item>
+    <ion-item [routerLink]="['categories']" (click)="showCategories('Events')">
+      <ion-icon slot="start" name="game-controller-outline" style="color: #f46529;"></ion-icon>
+      <ion-label>
+        <h3>Events</h3>
+      </ion-label>
+    </ion-item>
+    <ion-item [routerLink]="['categories']" (click)="showCategories('Meal')">
+      <ion-icon slot="start" name="fast-food-outline" style="color: #ffd439;"></ion-icon>
+      <ion-label>
+        <h3>Meal</h3>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

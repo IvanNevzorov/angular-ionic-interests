@@ -13,6 +13,7 @@ import { RemoveInterestAPI } from '../store/interfaces/interests/remove-interest
 import { CreateInterestAPI } from '../store/interfaces/interests/create-interest-api.interface';
 import { CreateImageAPI } from '../store/interfaces/image/create-image-api.interface';
 import { GetImageAPI } from '../store/interfaces/image/get-image-api.interface';
+import { UserUpdateAPI } from '../store/interfaces/user/user-update-api.interface';
 
 @Injectable({ providedIn: 'root' })
 
@@ -68,6 +69,30 @@ export class GraphQLService {
                 .set('Accept', 'application/json')
         }).pipe(
             map((data: UserRegisterAPI) => data)
+        );
+    }
+
+    public updateUser(id, data, param): Observable<UserUpdateAPI> {
+        console.log(id, data, param);
+
+        const body = JSON.stringify({
+            query: `
+            mutation {
+                updateUser(user: {
+                  id: "${id}",
+                  data: "${data}",
+                  param: "${param}"
+                })
+            }
+            `
+        });
+
+        return this.http.post(environment.graphql, body, {
+            headers: new HttpHeaders()
+                .set('Content-Type', 'application/json')
+                .set('Accept', 'application/json')
+        }).pipe(
+            map((data: UserUpdateAPI) => data)
         );
     }
 

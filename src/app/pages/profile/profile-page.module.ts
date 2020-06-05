@@ -6,6 +6,7 @@ import { UserInterestsComponent } from 'src/app/components/user-interests/user-i
 import { UserInfoComponent } from 'src/app/components/user-info/user-info.component';
 import { FormsModule } from '@angular/forms';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { SignOutComponent } from 'src/app/components/sign-out/sign-out.component';
 
 @NgModule({
     imports: [
@@ -17,7 +18,8 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
     declarations: [
         ProfilePageComponent,
         UserInterestsComponent,
-        UserInfoComponent
+        UserInfoComponent,
+        SignOutComponent
     ],
     providers: [
         SocialSharing

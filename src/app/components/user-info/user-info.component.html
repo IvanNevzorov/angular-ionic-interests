@@ -2,7 +2,7 @@
 <ion-item>
   <ion-label>
     <ion-grid>
-      <ion-row>
+      <ion-row (click)="updateName()">
         <ion-col size="5">Name</ion-col>
         <ion-col size="7"> {{ userProfile?.firstName }} {{ userProfile?.secondName }} </ion-col>
       </ion-row>
@@ -37,13 +37,14 @@
     </ion-grid>
   </ion-label>
 </ion-item>
+
+<!-- BIRTH DATE -->
 <ion-item>
   <ion-grid>
     <ion-row>
       <ion-col class="text-left" size="5" class="ion-align-self-center">Change DoB</ion-col>
       <ion-col class="text-center" size="7">
-        <ion-datetime displayFormat="DD/MM/YYYY" value="birthDate" placeholder="Select date" [(ngModel)]="birthDate"
-          ngDefaultControl>
+        <ion-datetime displayFormat="DD/MM/YYYY" value="birthDate" placeholder="Select date" [(ngModel)]="birthDate" ngDefaultControl>
         </ion-datetime>
       </ion-col>
     </ion-row>
